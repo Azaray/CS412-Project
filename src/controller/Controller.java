@@ -2,12 +2,15 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
+import datastructures.SearchQuery;
 import view.View;
 
 import model.Model;
+import model.Searcher;
 
 public class Controller implements ActionListener {
 
@@ -33,6 +36,14 @@ public class Controller implements ActionListener {
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
 		myController.addView(myView);
+		
+		// Test query
+		try {
+			Searcher.Search(new SearchQuery("shrouded but to shrouding"));
+		} catch (IOException e) {
+			// TODO Auto-generated catch block
+			e.printStackTrace();
+		}
 	}
 
 	@Override
