@@ -157,13 +157,13 @@ public class View extends JFrame implements Observer {
 
 	public void fillSuggestions() {
 		int finish;
-		System.out.println(suggestionsList.size());
-		if(10 > suggestionsList.size()) {
-			finish = suggestionsList.size();
+		int start = pageNumber*10;
+		if(10 > (suggestionsList.size() - start)) {
+			finish = suggestionsList.size() - start;
 		} else {
 			finish = 10;
 		}
-		int start = pageNumber*10;
+
 
 		for(int i=0; i<finish; i++) {
 			suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(60));
@@ -181,6 +181,7 @@ public class View extends JFrame implements Observer {
 	@Override
 	public void update(Observable o, Object obj) {
 		if(obj instanceof QueryResult) {
+			setPageNumber(0);
 			setSuggestionsList(((QueryResult) obj).getDocuments());
 			fillSuggestions();
 		}
