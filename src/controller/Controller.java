@@ -34,9 +34,6 @@ public class Controller implements ActionListener {
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
 		myController.addView(myView);
-		
-		// Test query
-		Model.Search(new SearchQuery("Interior"));
 	}
 
 	@Override

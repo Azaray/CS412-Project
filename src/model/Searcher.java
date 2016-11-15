@@ -40,6 +40,7 @@ public class Searcher {
 					result.addDocument(searcher.doc(sd.doc));
 				}
 				
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
