@@ -26,6 +26,7 @@ public class Controller implements ActionListener {
 
 		// tell View about Controller ,
 		View myView = new View(myController);// Create View
+		myView.setPageNumber(0);
 
 		// tell Model about View.
 		Model.addObserver(myView);
@@ -56,7 +57,7 @@ public class Controller implements ActionListener {
 			}
 
 		} else if(e.getActionCommand().equals("Previous")) {
-			if((this.View.getPageNumber()+1) * 10 > this.View.getSuggestionsList().size()) {
+			if((this.View.getPageNumber()) > 0) {
 				this.View.setPageNumber(this.View.getPageNumber()-1);
 				this.View.fillSuggestions();
 			} else {
