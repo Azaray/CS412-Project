@@ -44,6 +44,10 @@ public class Controller implements ActionListener {
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());
 		
 		if (e.getActionCommand().equals("Refresh")) this.Model.Refresh();
+		else if(e.getActionCommand().equals("Search")) {
+			SearchQuery searchQuery = new SearchQuery(this.View.getSearchField());
+			this.Model.Search(searchQuery);
+		}
 	}
 
 	public void addModel(Observable m) {

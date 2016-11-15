@@ -11,6 +11,7 @@ import controller.Controller;
 public class View extends JFrame implements Observer {
 
 	private Controller Controller;
+	private JTextField searchField;
 	private final JMenuBar menuBar = new JMenuBar();
 	private static final long serialVersionUID = -7574733018145634162L;
 	
@@ -32,7 +33,11 @@ public class View extends JFrame implements Observer {
 		pack();
 		setVisible(true);
 	}
-	
+
+	public String getSearchField() {
+		return searchField.getText();
+	}
+
 	/**
 	 * A method to create a simple file menu
 	 */
@@ -55,6 +60,7 @@ public class View extends JFrame implements Observer {
 		
 		// Add action listeners to the menu items
 		menuRefresh.addActionListener(Controller);
+
 		menuExit.addActionListener(Controller);
 	}
 
@@ -76,9 +82,10 @@ public class View extends JFrame implements Observer {
 		searchPanel.setLayout(new FlowLayout());
 
 		JLabel searchDescription = new JLabel("Enter keywords..");
-		JTextField searchField = new JTextField();
+		searchField = new JTextField();
 		searchField.setColumns(30);
 		JButton searchButton = new JButton("Search");
+		searchButton.addActionListener(Controller);
 		searchPanel.add(searchDescription);
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
