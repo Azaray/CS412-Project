@@ -44,6 +44,26 @@ public class Controller implements ActionListener {
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());
 		
 		if (e.getActionCommand().equals("Refresh")) this.Model.Refresh();
+		else if(e.getActionCommand().equals("Search")) {
+			SearchQuery searchQuery = new SearchQuery(this.View.getSearchField());
+			this.Model.Search(searchQuery);
+		} else if(e.getActionCommand().equals("Next")) {
+			if((this.View.getPageNumber()+1) * 10 < this.View.getSuggestionsList().size()) {
+				this.View.setPageNumber(this.View.getPageNumber()+1);
+				this.View.fillSuggestions();
+			} else {
+				System.out.println("End reached");
+			}
+
+		} else if(e.getActionCommand().equals("Previous")) {
+			if((this.View.getPageNumber()+1) * 10 > this.View.getSuggestionsList().size()) {
+				this.View.setPageNumber(this.View.getPageNumber()-1);
+				this.View.fillSuggestions();
+			} else {
+				System.out.println("End reached");
+			}
+
+		}
 	}
 
 	public void addModel(Observable m) {

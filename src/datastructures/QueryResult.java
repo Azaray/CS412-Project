@@ -7,13 +7,13 @@ import org.apache.lucene.document.Document;
 
 public class QueryResult {
 
-	private List<Document> mDocList = new ArrayList<Document>();
+	private ArrayList<Document> mDocList = new ArrayList<Document>();
 	
 	public QueryResult() {
 		
 	}
 	
-	public List<Document> getDocuments() {
+	public ArrayList<Document> getDocuments() {
 		return this.mDocList;
 	}
 	
