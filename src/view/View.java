@@ -1,12 +1,10 @@
 package view;
-import java.awt.Dimension;
+import java.awt.*;
+import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.JFrame;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
+import javax.swing.*;
 
 import controller.Controller;
 
@@ -30,6 +28,7 @@ public class View extends JFrame implements Observer {
 		createFileMenu();
 		
 		setResizable(false);
+		createAndShowGUI();
 		pack();
 		setVisible(true);
 	}
@@ -57,6 +56,71 @@ public class View extends JFrame implements Observer {
 		// Add action listeners to the menu items
 		menuRefresh.addActionListener(Controller);
 		menuExit.addActionListener(Controller);
+	}
+
+	private void createAndShowGUI() {
+		//Create and set up the window.
+		//JFrame frame = new JFrame("Search...");
+
+
+		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+
+
+		Container contentPane = getContentPane();
+		contentPane.setLayout(new BorderLayout());
+
+
+		//search panel
+
+		JPanel searchPanel = new JPanel();
+		searchPanel.setLayout(new FlowLayout());
+
+		JLabel searchDescription = new JLabel("Enter keywords..");
+		JTextField searchField = new JTextField();
+		searchField.setColumns(30);
+		JButton searchButton = new JButton("Search");
+		searchPanel.add(searchDescription);
+		searchPanel.add(searchField);
+		searchPanel.add(searchButton);
+		contentPane.add(searchPanel, BorderLayout.NORTH);
+
+		JLabel suggestions = new JLabel("Suggestions..");
+
+
+		JPanel suggestionListPanel = new JPanel();
+		suggestionListPanel.setLayout(new BoxLayout(suggestionListPanel, BoxLayout.Y_AXIS));
+
+		ArrayList<JLabel> suggestionList = new ArrayList<>();
+		ArrayList<JButton> actionsList = new ArrayList<>();
+
+		for(int i=0; i<10; i++) {
+			String iStr = Integer.toString(i+1);
+			JLabel suggestion = new JLabel(iStr);
+			suggestionList.add(suggestion);
+			suggestionList.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
+			suggestionListPanel.add(suggestionList.get(i));
+
+		}
+
+		suggestionListPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
+		contentPane.add(suggestionListPanel, BorderLayout.WEST);
+
+		JPanel navigation = new JPanel();
+		navigation.setLayout(new FlowLayout());
+
+		JButton previous = new JButton("Previous");
+		JButton next = new JButton("Next");
+
+		navigation.add(previous);
+		navigation.add(next);
+
+		contentPane.add(navigation, BorderLayout.SOUTH);
+
+		//Display the window.
+
+		//pack();
+		//frame.setSize(700, 700);
+		//setVisible(true);
 	}
 
 	@Override
