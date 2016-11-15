@@ -1,17 +1,24 @@
 package view;
 import java.awt.*;
+import java.lang.reflect.Array;
 import java.util.ArrayList;
 import java.util.Observable;
 import java.util.Observer;
 
+
 import javax.swing.*;
 
 import controller.Controller;
+import datastructures.QueryResult;
+import org.apache.lucene.document.Document;
 
 public class View extends JFrame implements Observer {
 
 	private Controller Controller;
 	private JTextField searchField;
+	private ArrayList<Document> suggestionsList;
+	private ArrayList<JLabel> suggestionLabels;
+	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
 	private static final long serialVersionUID = -7574733018145634162L;
 	
@@ -32,6 +39,14 @@ public class View extends JFrame implements Observer {
 		createAndShowGUI();
 		pack();
 		setVisible(true);
+	}
+
+	private void setSuggestionsList(ArrayList<Document> documents) {
+		suggestionsList = documents;
+	}
+
+	public ArrayList<Document> getSuggestionsList() {
+		return suggestionsList;
 	}
 
 	public String getSearchField() {
@@ -97,15 +112,15 @@ public class View extends JFrame implements Observer {
 		JPanel suggestionListPanel = new JPanel();
 		suggestionListPanel.setLayout(new BoxLayout(suggestionListPanel, BoxLayout.Y_AXIS));
 
-		ArrayList<JLabel> suggestionList = new ArrayList<>();
+		suggestionLabels = new ArrayList<JLabel>();
 		ArrayList<JButton> actionsList = new ArrayList<>();
 
 		for(int i=0; i<10; i++) {
 			String iStr = Integer.toString(i+1);
 			JLabel suggestion = new JLabel(iStr);
-			suggestionList.add(suggestion);
-			suggestionList.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
-			suggestionListPanel.add(suggestionList.get(i));
+			suggestionLabels.add(suggestion);
+			suggestionLabels.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
+			suggestionListPanel.add(suggestionLabels.get(i));
 
 		}
 
@@ -116,7 +131,9 @@ public class View extends JFrame implements Observer {
 		navigation.setLayout(new FlowLayout());
 
 		JButton previous = new JButton("Previous");
+		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
+		next.addActionListener(Controller);
 
 		navigation.add(previous);
 		navigation.add(next);
@@ -130,9 +147,43 @@ public class View extends JFrame implements Observer {
 		//setVisible(true);
 	}
 
+	public int getPageNumber() {
+		return pageNumber;
+	}
+
+	public void setPageNumber(int pageNumber) {
+		this.pageNumber = pageNumber;
+	}
+
+	public void fillSuggestions() {
+		int finish;
+		System.out.println(suggestionsList.size());
+		if(10 > suggestionsList.size()) {
+			finish = suggestionsList.size();
+		} else {
+			finish = 10;
+		}
+		int start = pageNumber*10;
+
+		for(int i=0; i<finish; i++) {
+			suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(60));
+		}
+
+		for(int i=finish; i<10; i++) {
+			suggestionLabels.get(i).setText("");
+		}
+
+		invalidate();
+		validate();
+		repaint();
+	}
+
 	@Override
 	public void update(Observable o, Object obj) {
-		System.out.println("View: update() = " + (String) obj);
+		if(obj instanceof QueryResult) {
+			setSuggestionsList(((QueryResult) obj).getDocuments());
+			fillSuggestions();
+		}
 	}
 }
 
