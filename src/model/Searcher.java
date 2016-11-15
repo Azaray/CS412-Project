@@ -1,6 +1,5 @@
 package model;
 
-import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 
@@ -15,35 +14,38 @@ import org.apache.lucene.search.ScoreDoc;
 import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
-import datastructures.SearchQuery;;
+import datastructures.QueryResult;
+import datastructures.SearchQuery;
 
 public class Searcher {
 
-	public static ScoreDoc[] Search(SearchQuery searchQuery) throws IOException {
+	public static QueryResult Search(SearchQuery searchQuery) {
 	
+		QueryResult result = new QueryResult();
+		
 		if(!searchQuery.isEmpty()) {
 			try {
 				Path path = Paths.get("index");
 				IndexReader reader = DirectoryReader.open(FSDirectory.open(path));
 				IndexSearcher searcher = new IndexSearcher(reader);
 				
-				/* Could use the EnglishAnalyzer instead of the StandardAnalyzer because it already has a default
-				 * list of stopwords, and also includes stemming. */
-				// Analyzer analyzer = new EnglishAnalyzer();
 				Analyzer analyzer = new StandardAnalyzer();
-
 				QueryParser parser = new QueryParser("contents", analyzer);
 				Query query = parser.parse(searchQuery.getQueryString().trim());
 
 				TopDocs results = searcher.search(query, 100);
-				return results.scoreDocs; // Still to implement a data structure for returning results.
-			
+				ScoreDoc[] hits = results.scoreDocs;
+				
+				for(ScoreDoc sd : hits) {
+					result.addDocument(searcher.doc(sd.doc));
+				}
+				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}
 		}
 
-		return null;
+		return result;
 	}
 	
 }
