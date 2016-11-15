@@ -35,7 +35,6 @@ public class SearchQuery {
 		try {
 			queryStemming(removeStopwords(query));
 		} catch (IOException e) {
-			// TODO Auto-generated catch block
 			e.printStackTrace();
 		}
 

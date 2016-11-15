@@ -2,6 +2,7 @@ package model;
 
 import java.util.Observable;
 
+import datastructures.QueryResult;
 import datastructures.SearchQuery;
 
 public class Model extends Observable {
@@ -17,6 +18,8 @@ public class Model extends Observable {
 	}
 	
 	public void Search(SearchQuery query) {
-		Searcher.Search(query);
+		QueryResult result = Searcher.Search(query);
+		setChanged();
+		notifyObservers(result);
 	}
 }

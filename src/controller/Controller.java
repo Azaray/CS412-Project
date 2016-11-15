@@ -2,15 +2,12 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
-import java.io.IOException;
 import java.util.Observable;
 import java.util.Observer;
 
 import datastructures.SearchQuery;
-import view.View;
-
 import model.Model;
-import model.Searcher;
+import view.View;
 
 public class Controller implements ActionListener {
 
@@ -38,7 +35,7 @@ public class Controller implements ActionListener {
 		myController.addView(myView);
 		
 		// Test query
-		Model.Search(new SearchQuery("but to shrouding"));
+		Model.Search(new SearchQuery("Interior"));
 	}
 
 	@Override
