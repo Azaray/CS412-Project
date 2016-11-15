@@ -38,12 +38,7 @@ public class Controller implements ActionListener {
 		myController.addView(myView);
 		
 		// Test query
-		try {
-			Searcher.Search(new SearchQuery("shrouded but to shrouding"));
-		} catch (IOException e) {
-			// TODO Auto-generated catch block
-			e.printStackTrace();
-		}
+		Model.Search(new SearchQuery("but to shrouding"));
 	}
 
 	@Override

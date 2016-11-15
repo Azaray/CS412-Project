@@ -19,7 +19,7 @@ import datastructures.SearchQuery;;
 
 public class Searcher {
 
-	public static ScoreDoc[] Search(SearchQuery searchQuery) throws IOException {
+	public static ScoreDoc[] Search(SearchQuery searchQuery) {
 	
 		if(!searchQuery.isEmpty()) {
 			try {
