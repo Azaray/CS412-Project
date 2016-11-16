@@ -36,9 +36,6 @@ public class Controller implements ActionListener {
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
 		myController.addView(myView);
-		
-		Indexer.indexFiles("index", "docs", true);
-		
 	}
 
 	@Override
