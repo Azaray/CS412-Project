@@ -1,8 +1,6 @@
 package datastructures;
 
 import java.util.ArrayList;
-import java.util.List;
-
 import org.apache.lucene.document.Document;
 
 public class QueryResult {
@@ -18,6 +16,7 @@ public class QueryResult {
 	}
 	
 	public void addDocument(Document doc) {
-		this.mDocList.add(doc);
+		if(!this.mDocList.contains(doc))
+			this.mDocList.add(doc);
 	}
 }

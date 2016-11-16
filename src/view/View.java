@@ -166,7 +166,9 @@ public class View extends JFrame implements Observer {
 
 
 		for(int i=0; i<finish; i++) {
-			suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(60));
+			suggestionLabels.get(i).setText(suggestionsList.get(start+i).get("docno"));
+
+			//suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(20));
 		}
 
 		for(int i=finish; i<10; i++) {

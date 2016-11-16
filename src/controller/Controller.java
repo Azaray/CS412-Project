@@ -5,7 +5,9 @@ import java.awt.event.ActionListener;
 import java.util.Observable;
 import java.util.Observer;
 
+import datastructures.SearchField;
 import datastructures.SearchQuery;
+import model.Indexer;
 import model.Model;
 import view.View;
 
@@ -34,6 +36,9 @@ public class Controller implements ActionListener {
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
 		myController.addView(myView);
+		
+		Indexer.indexFiles("index", "docs", true);
+		
 	}
 
 	@Override
@@ -43,7 +48,7 @@ public class Controller implements ActionListener {
 		
 		if (e.getActionCommand().equals("Refresh")) this.Model.Refresh();
 		else if(e.getActionCommand().equals("Search")) {
-			SearchQuery searchQuery = new SearchQuery(this.View.getSearchField());
+			SearchQuery searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false);
 			this.Model.Search(searchQuery);
 		} else if(e.getActionCommand().equals("Next")) {
 			if((this.View.getPageNumber()+1) * 10 < this.View.getSuggestionsList().size()) {

@@ -30,17 +30,15 @@ public class Searcher {
 				IndexSearcher searcher = new IndexSearcher(reader);
 				
 				Analyzer analyzer = new StandardAnalyzer();
-				QueryParser parser = new QueryParser("contents", analyzer);
+				QueryParser parser = new QueryParser("text", analyzer);
 				Query query = parser.parse(searchQuery.getQueryString().trim());
-
-				TopDocs results = searcher.search(query, 100);
-				ScoreDoc[] hits = results.scoreDocs;
 				
+				TopDocs results = searcher.search(query, 10);
+				ScoreDoc[] hits = results.scoreDocs;
+		
 				for(ScoreDoc sd : hits) {
 					result.addDocument(searcher.doc(sd.doc));
 				}
-				
-				
 			} catch (Exception e) {
 				e.printStackTrace();
 			}

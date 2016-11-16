@@ -16,15 +16,27 @@ import java.util.List;
 
 public class SearchQuery {
 
-	private String mQueryString = null;
+	private SearchField mSearchField;
+	private String mQueryString;
 	private List<String> mQueryList = new ArrayList<String>();
+	private boolean mExactWord;
 
-	public SearchQuery(String query) {
+	public SearchQuery(String query, SearchField field, boolean exact) {
+		this.mSearchField = field;
+		this.mExactWord = exact;
 		FormatQuery(query);
 	}
 
 	public String getQueryString() {
 		return this.mQueryString;
+	}
+	
+	public SearchField getSearchField() {
+		return this.mSearchField;
+	}
+	
+	public boolean isExactWord() {
+		return mExactWord;
 	}
 	
 	public boolean isEmpty() {
@@ -71,30 +83,37 @@ public class SearchQuery {
 
 	private void queryStemming(String query) throws IOException {
 
-		AttributeFactory factory = AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY;
-		
-		StandardTokenizer tokenizer = new StandardTokenizer(factory);
-		tokenizer.setReader(new StringReader(query));
-		tokenizer.reset();
+		if(!mExactWord) {
+			AttributeFactory factory = AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY;
+			
+			StandardTokenizer tokenizer = new StandardTokenizer(factory);
+			tokenizer.setReader(new StringReader(query));
+			tokenizer.reset();
 
-		PorterStemFilter psf = new PorterStemFilter(tokenizer);
-		CharTermAttribute attr = tokenizer.addAttribute(CharTermAttribute.class);
-		
-		while (psf.incrementToken()) {		
-			String term = attr.toString();
-				
-			if(!mQueryList.contains(term))
-				mQueryList.add(term);
+			PorterStemFilter psf = new PorterStemFilter(tokenizer);
+			CharTermAttribute attr = tokenizer.addAttribute(CharTermAttribute.class);
+			
+			while (psf.incrementToken()) {		
+				String term = attr.toString();
+					
+				if(!mQueryList.contains(term))
+					mQueryList.add(term);
+			}
+			
+			psf.close();
 		}
-		
-		psf.close();
 	}
 	
 	private void generateQueryString() {
 		StringBuilder strb = new StringBuilder();
 		
-		for(String str : mQueryList)
-			strb.append(str + " ");
+		for(String str : mQueryList) {
+			if(!this.mExactWord) {
+				strb.append(str + "*");
+			} else {
+				strb.append(str + " ");
+			}
+		}
 		
 		mQueryString = strb.toString();
 	}
