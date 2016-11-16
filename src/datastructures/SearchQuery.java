@@ -109,7 +109,7 @@ public class SearchQuery {
 		
 		for(String str : mQueryList) {
 			if(!this.mExactWord) {
-				strb.append(str + "*");
+				strb.append(str + "* ");
 			} else {
 				strb.append(str + " ");
 			}
