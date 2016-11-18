@@ -9,6 +9,7 @@ import java.nio.file.Paths;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
@@ -45,7 +46,8 @@ public class Indexer {
 			Path path = Paths.get(indexPath);
 			Directory dir = FSDirectory.open(path);
 
-			Analyzer analyzer = new StandardAnalyzer();
+			//Analyzer analyzer = new EnglishAnalyzer();
+			Analyzer analyzer = new StandardAnalyzer(EnglishAnalyzer.getDefaultStopSet());
 			IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
 			if (create) {

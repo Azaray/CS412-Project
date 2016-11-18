@@ -15,6 +15,7 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 
 import datastructures.QueryResult;
+import datastructures.SearchField;
 import datastructures.SearchQuery;
 
 public class Searcher {
@@ -30,10 +31,11 @@ public class Searcher {
 				IndexSearcher searcher = new IndexSearcher(reader);
 				
 				Analyzer analyzer = new StandardAnalyzer();
-				QueryParser parser = new QueryParser("text", analyzer);
+				//Analyzer analyzer = new EnglishAnalyzer();
+				QueryParser parser = new QueryParser(SearchField.DOCCONTENT.field(), analyzer);
 				Query query = parser.parse(searchQuery.getQueryString().trim());
 				
-				TopDocs results = searcher.search(query, 10);
+				TopDocs results = searcher.search(query, 10000);
 				ScoreDoc[] hits = results.scoreDocs;
 		
 				for(ScoreDoc sd : hits) {
