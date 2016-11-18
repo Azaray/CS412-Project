@@ -4,6 +4,7 @@ import java.nio.file.Path;
 import java.nio.file.Paths;
 
 import org.apache.lucene.analysis.Analyzer;
+import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -30,7 +31,7 @@ public class Searcher {
 				IndexReader reader = DirectoryReader.open(FSDirectory.open(path));
 				IndexSearcher searcher = new IndexSearcher(reader);
 				
-				Analyzer analyzer = new StandardAnalyzer();
+				Analyzer analyzer = new StandardAnalyzer(EnglishAnalyzer.getDefaultStopSet());
 				//Analyzer analyzer = new EnglishAnalyzer();
 				QueryParser parser = new QueryParser(SearchField.DOCCONTENT.field(), analyzer);
 				Query query = parser.parse(searchQuery.getQueryString().trim());
