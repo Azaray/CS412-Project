@@ -21,6 +21,8 @@ public class View extends JFrame implements Observer {
 	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
 	private static final long serialVersionUID = -7574733018145634162L;
+	private JLabel allResults;
+	private JLabel selectedResults;
 	
 	public View(Controller myController) {
 
@@ -130,21 +132,21 @@ public class View extends JFrame implements Observer {
 		JPanel navigation = new JPanel();
 		navigation.setLayout(new FlowLayout());
 
+		allResults = new JLabel();
+		selectedResults = new JLabel();
 		JButton previous = new JButton("Previous");
 		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
 		next.addActionListener(Controller);
 
+		navigation.add(allResults);
+		navigation.add(selectedResults);
 		navigation.add(previous);
 		navigation.add(next);
 
+
 		contentPane.add(navigation, BorderLayout.SOUTH);
 
-		//Display the window.
-
-		//pack();
-		//frame.setSize(700, 700);
-		//setVisible(true);
 	}
 
 	public int getPageNumber() {
@@ -153,6 +155,22 @@ public class View extends JFrame implements Observer {
 
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
+	}
+
+	public String getAllResults() {
+		return allResults.getText();
+	}
+
+	public void setAllResults(String results) {
+		this.allResults.setText("Results: " + results);
+	}
+
+	public String getSelectedResults() {
+		return selectedResults.getText();
+	}
+
+	public void setSelectedResults(String results) {
+		this.selectedResults.setText("; " + results);
 	}
 
 	public void fillSuggestions() {
@@ -186,6 +204,8 @@ public class View extends JFrame implements Observer {
 			setPageNumber(0);
 			setSuggestionsList(((QueryResult) obj).getDocuments());
 			fillSuggestions();
+			setAllResults(Integer.toString(suggestionsList.size()));
+			setSelectedResults("0-10");
 		}
 	}
 }
