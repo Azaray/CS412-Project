@@ -21,6 +21,9 @@ public class View extends JFrame implements Observer {
 	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
 	private static final long serialVersionUID = -7574733018145634162L;
+	private JLabel allResults;
+	private JLabel selectedResults;
+	private JComboBox resultsToGo;
 	
 	public View(Controller myController) {
 
@@ -117,7 +120,7 @@ public class View extends JFrame implements Observer {
 
 		for(int i=0; i<10; i++) {
 			String iStr = Integer.toString(i+1);
-			JLabel suggestion = new JLabel(iStr);
+			JLabel suggestion = new JLabel();
 			suggestionLabels.add(suggestion);
 			suggestionLabels.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
 			suggestionListPanel.add(suggestionLabels.get(i));
@@ -130,21 +133,29 @@ public class View extends JFrame implements Observer {
 		JPanel navigation = new JPanel();
 		navigation.setLayout(new FlowLayout());
 
+		allResults = new JLabel();
+		selectedResults = new JLabel();
+		JLabel resulsToGoLabel = new JLabel("Result :");
+		resultsToGo = new JComboBox();
+		resultsToGo.addItem("No results");
 		JButton previous = new JButton("Previous");
 		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
 		next.addActionListener(Controller);
+		JButton go = new JButton("Go");
+		go.addActionListener(Controller);
 
+		navigation.add(allResults);
+		navigation.add(selectedResults);
 		navigation.add(previous);
 		navigation.add(next);
+		navigation.add(resulsToGoLabel);
+		navigation.add(resultsToGo);
+		navigation.add(go);
+
 
 		contentPane.add(navigation, BorderLayout.SOUTH);
 
-		//Display the window.
-
-		//pack();
-		//frame.setSize(700, 700);
-		//setVisible(true);
 	}
 
 	public int getPageNumber() {
@@ -153,6 +164,29 @@ public class View extends JFrame implements Observer {
 
 	public void setPageNumber(int pageNumber) {
 		this.pageNumber = pageNumber;
+	}
+
+	public String getAllResults() {
+		return allResults.getText();
+	}
+
+	public void setAllResults(String results) {
+		this.allResults.setText("Results: " + results);
+	}
+
+	public String getSelectedResults() {
+		return selectedResults.getText();
+	}
+
+	public void setSelectedResults(String results) {
+		this.selectedResults.setText("; " + results);
+	}
+
+	public void setResultsToGo(ArrayList<String> resultsToGo) {
+		this.resultsToGo.removeAllItems();
+		for(int i = 0; i < resultsToGo.size(); i++) {
+			resultsToGo.add(resultsToGo.get(i));
+		}
 	}
 
 	public void fillSuggestions() {
@@ -164,10 +198,11 @@ public class View extends JFrame implements Observer {
 			finish = 10;
 		}
 
+		resultsToGo.removeAllItems();
 
 		for(int i=0; i<finish; i++) {
 			suggestionLabels.get(i).setText(suggestionsList.get(start+i).get("docno"));
-
+			resultsToGo.addItem(suggestionsList.get(start+i).get("docno"));
 			//suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(20));
 		}
 
@@ -186,6 +221,8 @@ public class View extends JFrame implements Observer {
 			setPageNumber(0);
 			setSuggestionsList(((QueryResult) obj).getDocuments());
 			fillSuggestions();
+			setAllResults(Integer.toString(suggestionsList.size()));
+			setSelectedResults("0-10");
 		}
 	}
 }
