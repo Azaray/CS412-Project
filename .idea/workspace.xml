@@ -2,20 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="1c620d6d-8577-4466-8b76-24e9108c8ae2" name="Default" comment="">
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_u.cfe" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_u.cfs" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_u.si" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/index/segments_p" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/controller/Controller.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/datastructures/AdvancedSearchQuery.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/datastructures/QueryResult.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/datastructures/SearchQuery.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/model/Indexer.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/model/Searcher.class" afterPath="" />
-      <change type="DELETED" beforePath="$PROJECT_DIR$/out/production/CS412-Project/view/View.class" afterPath="" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/CS412-Project.iml" afterPath="$PROJECT_DIR$/CS412-Project.iml" />
-      <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/controller/Controller.java" afterPath="$PROJECT_DIR$/src/controller/Controller.java" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_z.cfe" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_z.cfs" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index/_z.si" afterPath="" />
+      <change type="DELETED" beforePath="$PROJECT_DIR$/index/segments_u" afterPath="" />
       <change type="MODIFICATION" beforePath="$PROJECT_DIR$/src/view/View.java" afterPath="$PROJECT_DIR$/src/view/View.java" />
     </list>
     <ignored path="CS412-Project.iws" />
@@ -108,19 +98,29 @@
       <file leaf-file-name="View.java" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/src/view/View.java">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="157">
-              <caret line="142" column="40" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
+            <state relative-caret-position="279">
+              <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
               <folding>
                 <element signature="imports" expanded="true" />
-                <element signature="e#4041#4042#0" expanded="true" />
-                <element signature="e#4075#4076#0" expanded="true" />
-                <element signature="e#4121#4122#0" expanded="true" />
-                <element signature="e#4174#4175#0" expanded="true" />
-                <element signature="e#4213#4214#0" expanded="true" />
-                <element signature="e#4252#4253#0" expanded="true" />
-                <element signature="e#4303#4304#0" expanded="true" />
-                <element signature="e#4354#4355#0" expanded="true" />
+                <element signature="e#4348#4349#0" expanded="true" />
+                <element signature="e#4382#4383#0" expanded="true" />
+                <element signature="e#4428#4429#0" expanded="true" />
+                <element signature="e#4481#4482#0" expanded="true" />
+                <element signature="e#4520#4521#0" expanded="true" />
+                <element signature="e#4559#4560#0" expanded="true" />
+                <element signature="e#4610#4611#0" expanded="true" />
+                <element signature="e#4661#4662#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Document.class" pinned="false" current-in-tab="false">
+        <entry file="jar://$USER_HOME$/Downloads/lucene-core-6.3.0.jar!/org/apache/lucene/document/Document.class">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="108">
+              <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -776,12 +776,12 @@
       <workItem from="1479212840639" duration="7105000" />
       <workItem from="1479296149709" duration="144000" />
       <workItem from="1479563529977" duration="757000" />
-      <workItem from="1479586027353" duration="2441000" />
+      <workItem from="1479586027353" duration="3731000" />
     </task>
     <servers />
   </component>
   <component name="TimeTrackingManager">
-    <option name="totallyTimeSpent" value="10447000" />
+    <option name="totallyTimeSpent" value="11737000" />
   </component>
   <component name="TodoView">
     <todo-panel id="selected-file">
@@ -804,7 +804,7 @@
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="true" content_ui="tabs" />
       <window_info id="Maven Projects" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32903227" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Capture Tool" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Designer" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -944,14 +944,14 @@
           <caret line="0" column="0" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4041#4042#0" expanded="true" />
-            <element signature="e#4075#4076#0" expanded="true" />
-            <element signature="e#4121#4122#0" expanded="true" />
-            <element signature="e#4174#4175#0" expanded="true" />
-            <element signature="e#4213#4214#0" expanded="true" />
-            <element signature="e#4252#4253#0" expanded="true" />
-            <element signature="e#4303#4304#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
+            <element signature="e#4348#4349#0" expanded="true" />
+            <element signature="e#4382#4383#0" expanded="true" />
+            <element signature="e#4428#4429#0" expanded="true" />
+            <element signature="e#4481#4482#0" expanded="true" />
+            <element signature="e#4520#4521#0" expanded="true" />
+            <element signature="e#4559#4560#0" expanded="true" />
+            <element signature="e#4610#4611#0" expanded="true" />
+            <element signature="e#4661#4662#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -968,6 +968,7 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="36">
           <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="34" />
+          <folding />
         </state>
       </provider>
     </entry>
@@ -1056,13 +1057,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="jar://$USER_HOME$/Downloads/lucene-core-6.3.0.jar!/org/apache/lucene/document/Document.class">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="36">
-          <caret line="5" column="8" selection-start-line="5" selection-start-column="8" selection-end-line="5" selection-end-column="34" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/src/model/Indexer.java">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="270">
@@ -1087,20 +1081,28 @@
         </state>
       </provider>
     </entry>
+    <entry file="jar://$USER_HOME$/Downloads/lucene-core-6.3.0.jar!/org/apache/lucene/document/Document.class">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="108">
+          <caret line="14" column="19" selection-start-line="14" selection-start-column="19" selection-end-line="14" selection-end-column="19" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/src/view/View.java">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="157">
-          <caret line="142" column="40" selection-start-line="142" selection-start-column="40" selection-end-line="142" selection-end-column="40" />
+        <state relative-caret-position="279">
+          <caret line="137" column="46" selection-start-line="137" selection-start-column="46" selection-end-line="137" selection-end-column="46" />
           <folding>
             <element signature="imports" expanded="true" />
-            <element signature="e#4041#4042#0" expanded="true" />
-            <element signature="e#4075#4076#0" expanded="true" />
-            <element signature="e#4121#4122#0" expanded="true" />
-            <element signature="e#4174#4175#0" expanded="true" />
-            <element signature="e#4213#4214#0" expanded="true" />
-            <element signature="e#4252#4253#0" expanded="true" />
-            <element signature="e#4303#4304#0" expanded="true" />
-            <element signature="e#4354#4355#0" expanded="true" />
+            <element signature="e#4348#4349#0" expanded="true" />
+            <element signature="e#4382#4383#0" expanded="true" />
+            <element signature="e#4428#4429#0" expanded="true" />
+            <element signature="e#4481#4482#0" expanded="true" />
+            <element signature="e#4520#4521#0" expanded="true" />
+            <element signature="e#4559#4560#0" expanded="true" />
+            <element signature="e#4610#4611#0" expanded="true" />
+            <element signature="e#4661#4662#0" expanded="true" />
           </folding>
         </state>
       </provider>
