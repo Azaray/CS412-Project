@@ -41,6 +41,10 @@ public class Controller implements ActionListener {
 			NextPage();
 		else if (e.getActionCommand().equals("Previous"))
 			PreviousPage();
+		else if(e.getActionCommand().equals("Go"))
+			Go();
+		else if(e.getActionCommand().equals("Back"))
+			Back();
 
 		System.out.println("Controller: actionPerformed() : The " + e.getActionCommand() + " button is clicked at "
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());
@@ -59,6 +63,16 @@ public class Controller implements ActionListener {
 		} else {
 			System.out.println("End reached");
 		}
+	}
+
+	private void Go() {
+		this.View.setIsExpanded(true);
+		this.View.expandSuggestion();
+	}
+
+	private void Back() {
+		this.View.setIsExpanded(false);
+		this.View.fillSuggestions();
 	}
 
 	private void PreviousPage() {
