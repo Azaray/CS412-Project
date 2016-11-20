@@ -24,6 +24,9 @@ public class View extends JFrame implements Observer {
 	private JLabel allResults;
 	private JLabel selectedResults;
 	private JComboBox resultsToGo;
+	private JButton go;
+
+	private boolean isExpanded;
 	
 	public View(Controller myController) {
 
@@ -82,6 +85,20 @@ public class View extends JFrame implements Observer {
 		menuExit.addActionListener(Controller);
 	}
 
+	public boolean getIsExpanded() {
+		return isExpanded;
+	}
+
+	public void setIsExpanded(boolean isExpanded) {
+
+		this.isExpanded = isExpanded;
+		if(isExpanded) {
+			go.setText("Back");
+		} else {
+			go.setText("Go");
+		}
+	}
+
 	private void createAndShowGUI() {
 		//Create and set up the window.
 		//JFrame frame = new JFrame("Search...");
@@ -110,6 +127,8 @@ public class View extends JFrame implements Observer {
 		contentPane.add(searchPanel, BorderLayout.NORTH);
 
 		JLabel suggestions = new JLabel("Suggestions..");
+
+
 
 
 		JPanel suggestionListPanel = new JPanel();
@@ -142,7 +161,7 @@ public class View extends JFrame implements Observer {
 		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
 		next.addActionListener(Controller);
-		JButton go = new JButton("Go");
+		go = new JButton("Go");
 		go.addActionListener(Controller);
 
 		navigation.add(allResults);
@@ -182,10 +201,12 @@ public class View extends JFrame implements Observer {
 		this.selectedResults.setText("; " + results);
 	}
 
-	public void setResultsToGo(ArrayList<String> resultsToGo) {
-		this.resultsToGo.removeAllItems();
-		for(int i = 0; i < resultsToGo.size(); i++) {
-			resultsToGo.add(resultsToGo.get(i));
+
+	public void expandSuggestion() {
+		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
+		suggestionLabels.get(0).setText(suggestionsList.get(index).get("docno"));
+		for(int i=1; i<10; i++) {
+			suggestionLabels.get(i).setText("");
 		}
 	}
 
