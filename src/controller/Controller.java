@@ -65,6 +65,7 @@ public class Controller implements ActionListener {
 		if ((this.View.getPageNumber()) > 0) {
 			this.View.setPageNumber(this.View.getPageNumber() - 1);
 			this.View.fillSuggestions();
+			this.View.setSelectedResults(this.View.getPageNumber()*10 + "-" + (this.View.getPageNumber()+1)*10);
 			System.out.println(this.View.getPageNumber());
 		} else {
 			System.out.println("End reached");
