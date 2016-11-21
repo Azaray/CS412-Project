@@ -49,7 +49,7 @@ public class View extends JFrame implements Observer {
 		createAndShowGUI();
 
 		pack();
-		setSize(600,600);
+		setSize(900,600);
 		setVisible(true);
 	}
 
@@ -116,7 +116,7 @@ public class View extends JFrame implements Observer {
 		JLabel searchDescription = new JLabel("Enter keywords..");
 		searchField = new JTextField();
 		searchField.setColumns(30);
-		expandedResult = new JTextArea(5, 20);
+		expandedResult = new JTextArea(5, 50);
 		expandedResult.setEditable(false);
 		expandedResult.setLineWrap(true);
 		expandedResult.setWrapStyleWord(true);
@@ -209,6 +209,9 @@ public class View extends JFrame implements Observer {
 		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
 		expandedResult.setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
 		getContentPane().add(scroll, BorderLayout.EAST);
+		invalidate();
+		validate();
+		repaint();
 	}
 
 	public void fillSuggestions() {
