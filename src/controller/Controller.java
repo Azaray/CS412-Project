@@ -66,12 +66,11 @@ public class Controller implements ActionListener {
 	}
 
 	private void Go() {
-		this.View.setIsExpanded(true);
 		this.View.expandSuggestion();
 	}
 
 	private void Back() {
-		this.View.setIsExpanded(false);
+		//this.View.setIsExpanded(false);
 		this.View.fillSuggestions();
 	}
 

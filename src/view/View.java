@@ -28,6 +28,7 @@ public class View extends JFrame implements Observer {
 	private JComboBox resultsToGo;
 	private JButton go;
 	private JTextArea expandedResult;
+	private JScrollPane scroll;
 
 	private boolean isExpanded;
 	
@@ -46,7 +47,9 @@ public class View extends JFrame implements Observer {
 		
 		setResizable(false);
 		createAndShowGUI();
+
 		pack();
+		setSize(600,600);
 		setVisible(true);
 	}
 
@@ -92,15 +95,6 @@ public class View extends JFrame implements Observer {
 		return isExpanded;
 	}
 
-	public void setIsExpanded(boolean isExpanded) {
-
-		this.isExpanded = isExpanded;
-		if(isExpanded) {
-			go.setText("Back");
-		} else {
-			go.setText("Go");
-		}
-	}
 
 	private void createAndShowGUI() {
 		//Create and set up the window.
@@ -123,7 +117,10 @@ public class View extends JFrame implements Observer {
 		searchField = new JTextField();
 		searchField.setColumns(30);
 		expandedResult = new JTextArea(5, 20);
+		expandedResult.setEditable(false);
 		expandedResult.setLineWrap(true);
+		expandedResult.setWrapStyleWord(true);
+		scroll = new JScrollPane (expandedResult, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(Controller);
 		searchPanel.add(searchDescription);
@@ -179,6 +176,7 @@ public class View extends JFrame implements Observer {
 
 
 		contentPane.add(navigation, BorderLayout.SOUTH);
+		setSize(600,600);
 
 	}
 
@@ -208,15 +206,9 @@ public class View extends JFrame implements Observer {
 
 
 	public void expandSuggestion() {
-		/*int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
-		suggestionLabels.get(0).setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
-		getContentPane().add();
-		for(int i=1; i<10; i++) {
-			suggestionLabels.get(i).setText("");
-		}*/
 		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
 		expandedResult.setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
-		getContentPane().add(expandedResult, BorderLayout.EAST);
+		getContentPane().add(scroll, BorderLayout.EAST);
 	}
 
 	public void fillSuggestions() {
