@@ -10,6 +10,8 @@ import javax.swing.*;
 
 import controller.Controller;
 import datastructures.QueryResult;
+import datastructures.SearchField;
+import datastructures.SearchQuery;
 import org.apache.lucene.document.Document;
 
 public class View extends JFrame implements Observer {
@@ -25,6 +27,7 @@ public class View extends JFrame implements Observer {
 	private JLabel selectedResults;
 	private JComboBox resultsToGo;
 	private JButton go;
+	private JTextArea expandedResult;
 
 	private boolean isExpanded;
 	
@@ -119,6 +122,8 @@ public class View extends JFrame implements Observer {
 		JLabel searchDescription = new JLabel("Enter keywords..");
 		searchField = new JTextField();
 		searchField.setColumns(30);
+		expandedResult = new JTextArea(5, 20);
+		expandedResult.setLineWrap(true);
 		JButton searchButton = new JButton("Search");
 		searchButton.addActionListener(Controller);
 		searchPanel.add(searchDescription);
@@ -203,11 +208,15 @@ public class View extends JFrame implements Observer {
 
 
 	public void expandSuggestion() {
-		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
-		suggestionLabels.get(0).setText(suggestionsList.get(index).get("docno"));
+		/*int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
+		suggestionLabels.get(0).setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
+		getContentPane().add();
 		for(int i=1; i<10; i++) {
 			suggestionLabels.get(i).setText("");
-		}
+		}*/
+		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
+		expandedResult.setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
+		getContentPane().add(expandedResult, BorderLayout.EAST);
 	}
 
 	public void fillSuggestions() {
@@ -222,8 +231,8 @@ public class View extends JFrame implements Observer {
 		resultsToGo.removeAllItems();
 
 		for(int i=0; i<finish; i++) {
-			suggestionLabels.get(i).setText(suggestionsList.get(start+i).get("docno"));
-			resultsToGo.addItem(suggestionsList.get(start+i).get("docno"));
+			suggestionLabels.get(i).setText(suggestionsList.get(start+i).get(SearchField.DOCNO.field()));
+			resultsToGo.addItem(suggestionsList.get(start+i).get(SearchField.DOCNO.field()));
 			//suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(20));
 		}
 
