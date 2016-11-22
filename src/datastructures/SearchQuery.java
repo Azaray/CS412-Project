@@ -54,7 +54,7 @@ public class SearchQuery {
 		generateQueryString();
 	}
 	
-	private String removeStopwords(String query) throws IOException {
+	public String removeStopwords(String query) throws IOException {
 		
 		AttributeFactory factory = AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY;
 		

@@ -7,6 +7,9 @@ import java.util.Observer;
 
 
 import javax.swing.*;
+import javax.swing.text.BadLocationException;
+import javax.swing.text.DefaultHighlighter;
+import javax.swing.text.Highlighter;
 
 import controller.Controller;
 import datastructures.QueryResult;
@@ -205,9 +208,38 @@ public class View extends JFrame implements Observer {
 	}
 
 
-	public void expandSuggestion() {
+	public void expandSuggestion() throws BadLocationException {
 		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
-		expandedResult.setText(suggestionsList.get(index).get(SearchField.DOCCONTENT.field()));
+		String text = suggestionsList.get(index).get(SearchField.DOCCONTENT.field());
+		text = text.toLowerCase();
+		expandedResult.setText(text);
+
+		String[] splitted = searchField.getText().split(" ");
+		Highlighter highlighter = expandedResult.getHighlighter();
+		Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+
+		for(int i=0; i<splitted.length; i++) {
+			String word = splitted[i].toLowerCase();
+			int p0 = 0;
+
+			int p1 = p0 + word.length();
+			while(true) {
+				p0 = text.indexOf(word, p0+1);
+				p1 = p0 + word.length();
+				System.out.println(word + ":" + p0 + ":" + p1);
+				if(p0 < 0) {
+					break;
+				}
+
+
+				highlighter.addHighlight(p0, p1, painter);
+				//counter2++;
+			}
+
+
+		}
+
+
 		getContentPane().add(scroll, BorderLayout.EAST);
 		invalidate();
 		validate();
