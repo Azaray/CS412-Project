@@ -11,6 +11,8 @@ import model.Indexer;
 import model.Model;
 import view.View;
 
+import javax.swing.text.BadLocationException;
+
 public class Controller implements ActionListener {
 
 	private Model Model;
@@ -66,7 +68,11 @@ public class Controller implements ActionListener {
 	}
 
 	private void Go() {
-		this.View.expandSuggestion();
+		try {
+			this.View.expandSuggestion();
+		} catch (BadLocationException e) {
+			e.printStackTrace();
+		}
 	}
 
 	private void Back() {
