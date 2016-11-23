@@ -20,12 +20,17 @@ public class SearchQuery {
 	private String mQueryString;
 	private List<String> mQueryList = new ArrayList<String>();
 	private boolean mExactWord;
+	private boolean mSentenceSearch;
 
-	public SearchQuery(String query, SearchField field, boolean exact) {
+	public SearchQuery(String query, SearchField field, boolean exact, boolean sentenceSearch) {
 		this.mSearchField = field;
 		this.mExactWord = exact;
-		//this.mQueryString = query;
-		FormatQuery(query);
+		this.mSentenceSearch = sentenceSearch;
+		
+		if(mSentenceSearch)
+			this.mQueryString = "\"" + query + "\"";
+		else
+			FormatQuery(query);
 	}
 
 	public String getQueryString() {
@@ -36,12 +41,20 @@ public class SearchQuery {
 		return this.mSearchField;
 	}
 	
+	public boolean isentenceSearch() {
+		return this.mSentenceSearch;
+	}
+	
 	public boolean isExactWord() {
-		return mExactWord;
+		return this.mExactWord;
+	}
+	
+	public List<String> getQueryList() {
+		return this.mQueryList;
 	}
 	
 	public boolean isEmpty() {
-		return mQueryString.isEmpty();
+		return this.mQueryString.isEmpty();
 	}
 	
 	private void FormatQuery(String query) {
@@ -54,7 +67,7 @@ public class SearchQuery {
 		generateQueryString();
 	}
 	
-	public  String removeStopwords(String query) throws IOException {
+	public String removeStopwords(String query) throws IOException {
 		
 		AttributeFactory factory = AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY;
 		
@@ -110,7 +123,10 @@ public class SearchQuery {
 		
 		for(String str : mQueryList) {
 			if(!this.mExactWord) {
-				strb.append(str + "* ");
+				if(str.equals("AND") || str.equals("OR")|| str.equals("NOT"))
+					strb.append(str + " ");
+				else
+					strb.append(str + "* ");
 			} else {
 				strb.append(str + " ");
 			}

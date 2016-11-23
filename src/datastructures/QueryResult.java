@@ -1,22 +1,36 @@
 package datastructures;
 
-import java.util.ArrayList;
-import org.apache.lucene.document.Document;
+import java.util.HashMap;
+import java.util.Map;
 
 public class QueryResult {
+	
+	private int mDocID;
+	private String mDocName;
+	private Map<String, Integer> mQueryMentions;
+	
+	public QueryResult(int docId, String docName) {
+		this.mDocID = docId;
+		this.mDocName = docName;
+		this.mQueryMentions = new HashMap<>();
+	}
+	
+	public void addResult(String word, int mentions) {
+		this.mQueryMentions.put(word, mentions);
+	}
 
-	private ArrayList<Document> mDocList = new ArrayList<Document>();
-	
-	public QueryResult() {
-		
+	public int getmDocID() {
+		return mDocID;
+	}
+
+	public String getmDocName() {
+		return mDocName;
+	}
+
+	public Map<String, Integer> getmQueryMentions() {
+		return mQueryMentions;
 	}
 	
-	public ArrayList<Document> getDocuments() {
-		return this.mDocList;
-	}
 	
-	public void addDocument(Document doc) {
-		if(!this.mDocList.contains(doc))
-			this.mDocList.add(doc);
-	}
+
 }

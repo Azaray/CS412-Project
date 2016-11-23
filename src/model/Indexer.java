@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileInputStream;
 import java.io.IOException;
 import java.io.InputStream;
+import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.Date;
@@ -13,9 +14,11 @@ import org.apache.lucene.analysis.en.EnglishAnalyzer;
 import org.apache.lucene.analysis.standard.StandardAnalyzer;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.document.Field;
+import org.apache.lucene.document.FieldType;
 import org.apache.lucene.document.LegacyLongField;
 import org.apache.lucene.document.StringField;
 import org.apache.lucene.document.TextField;
+import org.apache.lucene.index.IndexOptions;
 import org.apache.lucene.index.IndexWriter;
 import org.apache.lucene.index.IndexWriterConfig;
 import org.apache.lucene.index.IndexWriterConfig.OpenMode;
@@ -46,7 +49,6 @@ public class Indexer {
 			Path path = Paths.get(indexPath);
 			Directory dir = FSDirectory.open(path);
 
-			//Analyzer analyzer = new EnglishAnalyzer();
 			Analyzer analyzer = new StandardAnalyzer(EnglishAnalyzer.getDefaultStopSet());
 			IndexWriterConfig iwc = new IndexWriterConfig(analyzer);
 
@@ -93,12 +95,9 @@ public class Indexer {
 						doc.add(new LegacyLongField(SearchField.LASTMODIFIED.field(), file.lastModified(), Field.Store.NO));
 						Field pathField = new StringField(SearchField.PATH.field(), file.getPath(), Field.Store.YES);
 						doc.add(pathField);
-
-						addTagToDoc(SearchField.DOCNO.field(), el, doc);
-						addTagToDoc(SearchField.DOCPARENT.field(), el, doc);
-						addTagToDoc(SearchField.USDEPT.field(), el, doc);
-						addTagToDoc(SearchField.USBUREAU.field(), el, doc);
-						addTagToDoc(SearchField.DOCCONTENT.field(), el, doc);
+											
+						for(SearchField sf : SearchField.values())
+							addTagToDoc(sf.field(), el, doc);
 
 						if (writer.getConfig().getOpenMode() == OpenMode.CREATE) {
 							writer.addDocument(doc);
@@ -119,16 +118,30 @@ public class Indexer {
 		Elements elements = e.getElementsByTag(tag);
 
 		if (!elements.isEmpty()) {
-				Field docnoField = new TextField(tag, elements.first().text(), Field.Store.YES);
+			if(tag.equals(SearchField.DOCCONTENT.field())) {
+
+				String str = new String(elements.first().text().getBytes(), Charset.forName("UTF-8"));
+				
+				FieldType ft = new FieldType();
+				ft.setStored(true);
+				ft.setTokenized(true);
+				ft.setStoreTermVectors(true);
+				ft.setStoreTermVectorOffsets(true);
+				ft.setStoreTermVectorPositions(true);
+				ft.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
+		
+				Field field = new Field(tag+"vector", str, ft);
+				doc.add(field);
+
+				Field docnoField = new TextField(tag, str, Field.Store.YES);
 				doc.add(docnoField);
+		
+			} else {
+				String str = new String(elements.first().text().getBytes(), Charset.forName("UTF-8"));
+		
+				Field docnoField = new TextField(tag, str, Field.Store.YES);
+				doc.add(docnoField);
+			}
 		}
 	}
 }
-
-// FieldType type = new FieldType();
-// type.setIndexOptions(IndexOptions.DOCS_AND_FREQS_AND_POSITIONS_AND_OFFSETS);
-// type.setStored(true);
-// type.setStoreTermVectors(true);
-// type.setTokenized(true);
-// type.setStoreTermVectorOffsets(true);
-// type.setStoreTermVectorPositions(true);

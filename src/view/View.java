@@ -1,21 +1,46 @@
 package view;
-import java.awt.*;
-import java.lang.reflect.Array;
+import java.awt.BorderLayout;
+import java.awt.Color;
+import java.awt.Component;
+import java.awt.Container;
+import java.awt.Dimension;
+import java.awt.FlowLayout;
+import java.io.IOException;
+import java.nio.file.Path;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-
-import javax.swing.*;
+import javax.swing.BoxLayout;
+import javax.swing.JButton;
+import javax.swing.JCheckBox;
+import javax.swing.JComboBox;
+import javax.swing.JFrame;
+import javax.swing.JLabel;
+import javax.swing.JMenu;
+import javax.swing.JMenuBar;
+import javax.swing.JMenuItem;
+import javax.swing.JPanel;
+import javax.swing.JScrollPane;
+import javax.swing.JTabbedPane;
+import javax.swing.JTextArea;
+import javax.swing.JTextField;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 
+import org.apache.lucene.document.Document;
+import org.apache.lucene.index.DirectoryReader;
+import org.apache.lucene.index.IndexReader;
+import org.apache.lucene.search.IndexSearcher;
+import org.apache.lucene.store.FSDirectory;
+
 import controller.Controller;
 import datastructures.QueryResult;
+import datastructures.QueryResultList;
 import datastructures.SearchField;
-import datastructures.SearchQuery;
-import org.apache.lucene.document.Document;
 
 public class View extends JFrame implements Observer {
 
@@ -23,7 +48,7 @@ public class View extends JFrame implements Observer {
 
 	private Controller Controller;
 	private JTextField searchField;
-	private ArrayList<Document> suggestionsList;
+	private QueryResultList suggestionsList;
 	private ArrayList<JLabel> suggestionLabels;
 	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
@@ -68,11 +93,11 @@ public class View extends JFrame implements Observer {
 		this.searchString = searchString;
 	}
 
-	private void setSuggestionsList(ArrayList<Document> documents) {
+	private void setSuggestionsList(QueryResultList documents) {
 		suggestionsList = documents;
 	}
 
-	public ArrayList<Document> getSuggestionsList() {
+	public QueryResultList getSuggestionsList() {
 		return suggestionsList;
 	}
 
@@ -254,60 +279,61 @@ public class View extends JFrame implements Observer {
 
 	public void expandSuggestion() throws BadLocationException {
 		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
-		String text = suggestionsList.get(index).get(SearchField.DOCCONTENT.field());
-		text = text.toLowerCase();
-		expandedResult.setText(text);
+		
+		Document doc = readDocument(suggestionsList.getResults().get(index).getmDocID());
+		
+		if(doc != null) {
+			
+			String text = doc.get(SearchField.DOCCONTENT.field());
+			text = text.toLowerCase();
+			expandedResult.setText(text);
 
-		String[] splitted = searchString.split(" ");;//searchField.getText().split(" ");
-		if(!advancedIsExact()) {
-			for(int y=0; y<splitted.length; y++) {
-				splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
-			}
-		}
-
-		System.out.println(searchString);
-		Highlighter highlighter = expandedResult.getHighlighter();
-		Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
-		Highlighter.HighlightPainter painterNotExact = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
-
-		for(int i=0; i<splitted.length; i++) {
-			String word = splitted[i].toLowerCase();
-			int p0 = 0;
-
-			int p1 = p0 + word.length();
-			while(true) {
-				p0 = text.indexOf(word, p0+1);
-				p1 = p0 + word.length();
-				System.out.println(word + ":" + p0 + ":" + p1);
-				if(p0 < 0) {
-					break;
+			String[] splitted = searchString.split(" ");;//searchField.getText().split(" ");
+			if(!advancedIsExact()) {
+				for(int y=0; y<splitted.length; y++) {
+					splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
 				}
+			}
 
+			System.out.println(searchString);
+			Highlighter highlighter = expandedResult.getHighlighter();
+			Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+			Highlighter.HighlightPainter painterNotExact = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
 
+			for(int i=0; i<splitted.length; i++) {
+				String word = splitted[i].toLowerCase();
+				int p0 = 0;
 
-
-				if(Character.isLetter(text.charAt(p0-1)) || Character.isDigit(text.charAt(p0-1))
-						|| Character.isLetter(text.charAt(p1)) || Character.isDigit(text.charAt(p1))) {
-					if(!advancedIsExact()) {
-						highlighter.addHighlight(p0, p1, painterNotExact);
+				int p1 = p0 + word.length();
+				while(true) {
+					p0 = text.indexOf(word, p0+1);
+					p1 = p0 + word.length();
+					System.out.println(word + ":" + p0 + ":" + p1);
+					if(p0 < 0) {
+						break;
 					}
-				} else {
-					highlighter.addHighlight(p0, p1, painterExact);
+
+					if(Character.isLetter(text.charAt(p0-1)) || Character.isDigit(text.charAt(p0-1))
+							|| Character.isLetter(text.charAt(p1)) || Character.isDigit(text.charAt(p1))) {
+						if(!advancedIsExact()) {
+							highlighter.addHighlight(p0, p1, painterNotExact);
+						}
+					} else {
+						highlighter.addHighlight(p0, p1, painterExact);
+					}
+
+					//counter2++;
 				}
 
 
-
-				//counter2++;
 			}
 
 
+			getContentPane().add(scroll, BorderLayout.EAST);
+			invalidate();
+			validate();
+			repaint();
 		}
-
-
-		getContentPane().add(scroll, BorderLayout.EAST);
-		invalidate();
-		validate();
-		repaint();
 	}
 
 	public void fillSuggestions() {
@@ -322,11 +348,11 @@ public class View extends JFrame implements Observer {
 		resultsToGo.removeAllItems();
 
 		for(int i=0; i<finish; i++) {
-			suggestionLabels.get(i).setText(suggestionsList.get(start+i).get(SearchField.DOCNO.field()));
-			resultsToGo.addItem(suggestionsList.get(start+i).get(SearchField.DOCNO.field()));
-			//suggestionLabels.get(i).setText(suggestionsList.get(start+i).toString().substring(20));
+			QueryResult result = suggestionsList.getResults().get(start+i);
+			suggestionLabels.get(i).setText(result.getmDocName() + "\n" + getMentions(result));
+			resultsToGo.addItem(result.getmDocName());
 		}
-
+		
 		for(int i=finish; i<10; i++) {
 			suggestionLabels.get(i).setText("");
 		}
@@ -338,13 +364,39 @@ public class View extends JFrame implements Observer {
 
 	@Override
 	public void update(Observable o, Object obj) {
-		if(obj instanceof QueryResult) {
+		if(obj instanceof QueryResultList) {
 			setPageNumber(0);
-			setSuggestionsList(((QueryResult) obj).getDocuments());
+			setSuggestionsList(((QueryResultList) obj));
 			fillSuggestions();
 			setAllResults(Integer.toString(suggestionsList.size()));
 			setSelectedResults("0-10");
 		}
+	}
+	
+	private Document readDocument(int docId) {
+		 
+		Path path = Paths.get("index/live");
+		IndexReader reader;
+		IndexSearcher searcher;
+		try {
+			reader = DirectoryReader.open(FSDirectory.open(path));
+			searcher = new IndexSearcher(reader);
+			return searcher.doc(docId);
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	
+		return null;
+	}
+	
+	private String getMentions(QueryResult result) {
+		StringBuilder strb = new StringBuilder();
+		Map<String, Integer> mentions = result.getmQueryMentions();
+		for(String word : mentions.keySet()) {
+			strb.append(word + " mentioned " + mentions.get(word) + " time(s). ");
+		}
+		
+		return strb.toString();
 	}
 }
 
