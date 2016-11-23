@@ -48,6 +48,8 @@ public class Controller implements ActionListener {
 			Go();
 		else if(e.getActionCommand().equals("Back"))
 			Back();
+		else if(e.getActionCommand().equals("Advanced Search"))
+			AdvancedSearch();
 
 		System.out.println("Controller: actionPerformed() : The " + e.getActionCommand() + " button is clicked at "
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());
@@ -55,6 +57,11 @@ public class Controller implements ActionListener {
 
 	private void Search() {
 		searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false);
+		this.Model.Search(searchQuery);
+	}
+
+	private void AdvancedSearch() {
+		searchQuery = new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact());
 		this.Model.Search(searchQuery);
 	}
 

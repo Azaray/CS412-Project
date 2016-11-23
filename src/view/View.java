@@ -34,9 +34,11 @@ public class View extends JFrame implements Observer {
 	private JButton go;
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
+	private JCheckBox isExact;
 
 	private boolean isExpanded;
-	
+	private JTextField advancedSearchField;
+
 	public View(Controller myController) {
 
 		System.out.println("View: View()");
@@ -76,6 +78,10 @@ public class View extends JFrame implements Observer {
 
 	public String getSearchField() {
 		return searchField.getText();
+	}
+
+	public String getAdvancedSearchField() {
+		return advancedSearchField.getText();
 	}
 
 	/**
@@ -124,22 +130,46 @@ public class View extends JFrame implements Observer {
 		//search panel
 
 		JPanel searchPanel = new JPanel();
+		JPanel advancedSearchPanel = new JPanel();
 		searchPanel.setLayout(new FlowLayout());
+		advancedSearchPanel.setLayout(new FlowLayout());
 
-		JLabel searchDescription = new JLabel("Enter keywords..");
+		JTabbedPane tabbedPane = new JTabbedPane();
+
+
+		JLabel searchDescription = new JLabel("Query..");
+		JLabel advancedSearchDescription = new JLabel("Query...");
 		searchField = new JTextField();
 		searchField.setColumns(30);
+		advancedSearchField = new JTextField();
+		advancedSearchField.setColumns(30);
 		expandedResult = new JTextArea(5, 50);
 		expandedResult.setEditable(false);
 		expandedResult.setLineWrap(true);
 		expandedResult.setWrapStyleWord(true);
 		scroll = new JScrollPane (expandedResult, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS, JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
 		JButton searchButton = new JButton("Search");
+		JButton advancedSearchButton = new JButton("Advanced Search");
 		searchButton.addActionListener(Controller);
+		advancedSearchButton.addActionListener(Controller);
 		searchPanel.add(searchDescription);
 		searchPanel.add(searchField);
 		searchPanel.add(searchButton);
-		contentPane.add(searchPanel, BorderLayout.NORTH);
+
+		advancedSearchPanel.add(advancedSearchDescription);
+		advancedSearchPanel.add(advancedSearchField);
+
+		isExact = new JCheckBox("Exact words");
+		advancedSearchPanel.add(isExact);
+
+		advancedSearchPanel.add(advancedSearchButton);
+
+
+		tabbedPane.addTab("Simple Search", null, searchPanel, "Simple Search");
+		tabbedPane.addTab("Advanced Search", null, advancedSearchPanel, "Advanced Search");
+
+
+		contentPane.add(tabbedPane, BorderLayout.NORTH);
 
 		JLabel suggestions = new JLabel("Suggestions..");
 
@@ -191,6 +221,10 @@ public class View extends JFrame implements Observer {
 		contentPane.add(navigation, BorderLayout.SOUTH);
 		setSize(600,600);
 
+	}
+
+	public boolean advancedIsExact() {
+		return isExact.isSelected();
 	}
 
 	public int getPageNumber() {
