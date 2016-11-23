@@ -19,6 +19,8 @@ import org.apache.lucene.document.Document;
 
 public class View extends JFrame implements Observer {
 
+	private String searchString;
+
 	private Controller Controller;
 	private JTextField searchField;
 	private ArrayList<Document> suggestionsList;
@@ -54,6 +56,14 @@ public class View extends JFrame implements Observer {
 		pack();
 		setSize(900,600);
 		setVisible(true);
+	}
+
+	public String getSearchString() {
+		return searchString;
+	}
+
+	public void setSearchString(String searchString) {
+		this.searchString = searchString;
 	}
 
 	private void setSuggestionsList(ArrayList<Document> documents) {
@@ -214,9 +224,14 @@ public class View extends JFrame implements Observer {
 		text = text.toLowerCase();
 		expandedResult.setText(text);
 
-		String[] splitted = searchField.getText().split(" ");
+		String[] splitted = searchString.split(" ");;//searchField.getText().split(" ");
+		for(int y=0; y<splitted.length; y++) {
+			splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
+		}
+		System.out.println(searchString);
 		Highlighter highlighter = expandedResult.getHighlighter();
-		Highlighter.HighlightPainter painter = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+		Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
+		Highlighter.HighlightPainter painterNotExact = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
 
 		for(int i=0; i<splitted.length; i++) {
 			String word = splitted[i].toLowerCase();
@@ -226,13 +241,23 @@ public class View extends JFrame implements Observer {
 			while(true) {
 				p0 = text.indexOf(word, p0+1);
 				p1 = p0 + word.length();
-				System.out.println(word + ":" + p0 + ":" + p1);
+				//System.out.println(word + ":" + p0 + ":" + p1);
 				if(p0 < 0) {
 					break;
 				}
 
 
-				highlighter.addHighlight(p0, p1, painter);
+
+
+				if(Character.isLetter(text.charAt(p0-1)) || Character.isDigit(text.charAt(p0-1))
+						|| Character.isLetter(text.charAt(p1)) || Character.isDigit(text.charAt(p1))) {
+					highlighter.addHighlight(p0, p1, painterNotExact);
+				} else {
+					highlighter.addHighlight(p0, p1, painterExact);
+				}
+
+
+
 				//counter2++;
 			}
 

@@ -17,6 +17,7 @@ public class Controller implements ActionListener {
 
 	private Model Model;
 	private View View;
+	private SearchQuery searchQuery;
 
 	public Controller() {
 		System.out.println("Controller: Controller()");
@@ -53,7 +54,7 @@ public class Controller implements ActionListener {
 	}
 
 	private void Search() {
-		SearchQuery searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false);
+		searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false);
 		this.Model.Search(searchQuery);
 	}
 
@@ -69,6 +70,7 @@ public class Controller implements ActionListener {
 
 	private void Go() {
 		try {
+			this.View.setSearchString(searchQuery.getQueryString());
 			this.View.expandSuggestion();
 		} catch (BadLocationException e) {
 			e.printStackTrace();
