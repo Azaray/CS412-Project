@@ -259,9 +259,12 @@ public class View extends JFrame implements Observer {
 		expandedResult.setText(text);
 
 		String[] splitted = searchString.split(" ");;//searchField.getText().split(" ");
-		for(int y=0; y<splitted.length; y++) {
-			splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
+		if(!advancedIsExact()) {
+			for(int y=0; y<splitted.length; y++) {
+				splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
+			}
 		}
+
 		System.out.println(searchString);
 		Highlighter highlighter = expandedResult.getHighlighter();
 		Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
@@ -275,7 +278,7 @@ public class View extends JFrame implements Observer {
 			while(true) {
 				p0 = text.indexOf(word, p0+1);
 				p1 = p0 + word.length();
-				//System.out.println(word + ":" + p0 + ":" + p1);
+				System.out.println(word + ":" + p0 + ":" + p1);
 				if(p0 < 0) {
 					break;
 				}
@@ -285,7 +288,9 @@ public class View extends JFrame implements Observer {
 
 				if(Character.isLetter(text.charAt(p0-1)) || Character.isDigit(text.charAt(p0-1))
 						|| Character.isLetter(text.charAt(p1)) || Character.isDigit(text.charAt(p1))) {
-					highlighter.addHighlight(p0, p1, painterNotExact);
+					if(!advancedIsExact()) {
+						highlighter.addHighlight(p0, p1, painterNotExact);
+					}
 				} else {
 					highlighter.addHighlight(p0, p1, painterExact);
 				}
