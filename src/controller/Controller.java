@@ -56,12 +56,14 @@ public class Controller implements ActionListener {
 	}
 
 	private void Search() {
+		this.View.setIsAdvanced(false);
 		searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false, false);
 		this.Model.Search(searchQuery);
 	}
 
 	private void AdvancedSearch() {
-		searchQuery = new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact(), false);
+		this.View.setIsAdvanced(true);
+		searchQuery = new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact(), this.View.advancedIsSentence());
 		this.Model.Search(searchQuery);
 	}
 

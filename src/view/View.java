@@ -60,6 +60,8 @@ public class View extends JFrame implements Observer {
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
 	private JCheckBox isExact;
+	private JCheckBox isSentence;
+	private boolean isAdvanced;
 
 	private boolean isExpanded;
 	private JTextField advancedSearchField;
@@ -84,6 +86,14 @@ public class View extends JFrame implements Observer {
 		setSize(900,600);
 		setVisible(true);
 	}
+
+	public boolean isAdvanced() {
+		return isAdvanced;
+	}
+
+	 public void setIsAdvanced(boolean isAdvanced) {
+		 this.isAdvanced = isAdvanced;
+	 }
 
 	public String getSearchString() {
 		return searchString;
@@ -185,7 +195,9 @@ public class View extends JFrame implements Observer {
 		advancedSearchPanel.add(advancedSearchField);
 
 		isExact = new JCheckBox("Exact words");
+		isSentence = new JCheckBox("Exact sentence");
 		advancedSearchPanel.add(isExact);
+		advancedSearchPanel.add(isSentence);
 
 		advancedSearchPanel.add(advancedSearchButton);
 
@@ -252,6 +264,10 @@ public class View extends JFrame implements Observer {
 		return isExact.isSelected();
 	}
 
+	public boolean advancedIsSentence() {
+		return isSentence.isSelected();
+	}
+
 	public int getPageNumber() {
 		return pageNumber;
 	}
@@ -287,15 +303,22 @@ public class View extends JFrame implements Observer {
 			String text = doc.get(SearchField.DOCCONTENT.field());
 			text = text.toLowerCase();
 			expandedResult.setText(text);
+			String[] splitted;
 
-			String[] splitted = searchString.split(" ");;//searchField.getText().split(" ");
-			if(!advancedIsExact()) {
+			if(isAdvanced() && advancedIsSentence() && isAdvanced) {
+				splitted = new String[1];
+				splitted[0] = searchString.substring(1, searchString.length()-1);
+			} else {
+				splitted = searchString.split(" ");
+			}
+
+
+			if(!advancedIsExact() || !isAdvanced) {
 				for(int y=0; y<splitted.length; y++) {
 					splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
 				}
 			}
 
-			System.out.println(searchString);
 			Highlighter highlighter = expandedResult.getHighlighter();
 			Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
 			Highlighter.HighlightPainter painterNotExact = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
@@ -315,14 +338,12 @@ public class View extends JFrame implements Observer {
 
 					if(Character.isLetter(text.charAt(p0-1)) || Character.isDigit(text.charAt(p0-1))
 							|| Character.isLetter(text.charAt(p1)) || Character.isDigit(text.charAt(p1))) {
-						if(!advancedIsExact()) {
+						if(!advancedIsExact() || !isAdvanced) {
 							highlighter.addHighlight(p0, p1, painterNotExact);
 						}
 					} else {
 						highlighter.addHighlight(p0, p1, painterExact);
 					}
-
-					//counter2++;
 				}
 
 
@@ -349,7 +370,7 @@ public class View extends JFrame implements Observer {
 
 		for(int i=0; i<finish; i++) {
 			QueryResult result = suggestionsList.getResults().get(start+i);
-			suggestionLabels.get(i).setText(result.getmDocName() + "\n" + getMentions(result));
+			suggestionLabels.get(i).setText("<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
 			resultsToGo.addItem(result.getmDocName());
 		}
 		
@@ -393,7 +414,7 @@ public class View extends JFrame implements Observer {
 		StringBuilder strb = new StringBuilder();
 		Map<String, Integer> mentions = result.getmQueryMentions();
 		for(String word : mentions.keySet()) {
-			strb.append(word + " mentioned " + mentions.get(word) + " time(s). ");
+			strb.append(word + " mentioned " + mentions.get(word) + " time(s). <br>");
 		}
 		
 		return strb.toString();
