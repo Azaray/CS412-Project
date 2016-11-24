@@ -119,6 +119,7 @@ public class Controller implements ActionListener {
 		myController.addModel(Model);
 		myController.addView(myView);
 		
-		Indexer.indexFiles("index", "docs", true);
+		//Doesn't have to be called every time
+		//Indexer.indexFiles("index", "docs", true);
 	}
 }
