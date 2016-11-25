@@ -308,12 +308,13 @@ public class View extends JFrame implements Observer {
 			if(isAdvanced() && advancedIsSentence() && isAdvanced) {
 				splitted = new String[1];
 				splitted[0] = searchString.substring(1, searchString.length()-1);
+				System.out.println(splitted[0]);
 			} else {
 				splitted = searchString.split(" ");
 			}
 
 
-			if(!advancedIsExact() || !isAdvanced) {
+			if((!advancedIsExact() || !isAdvanced) && !advancedIsSentence()) {
 				for(int y=0; y<splitted.length; y++) {
 					splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
 				}
