@@ -52,15 +52,17 @@ public class Searcher {
 					BytesRef text = null;
 					
 					while ((text = termsEnum.next()) != null) {
-					    String term = text.utf8ToString();
-					    for(String querystr : searchQuery.getQueryList()) {
+					    String term = text.utf8ToString().toLowerCase();
+					    
+					    for(String querystr : searchQuery.getHighlightQueryList()) {
+					    	
 					    	if(searchQuery.isExactWord()) {
-					    	    if(term.equals(querystr)) {
+					    	    if(term.equals(querystr.toLowerCase())) {
 							    	 int freq = (int) termsEnum.totalTermFreq();
 										result.addResult(term, freq);
 							    } 
 					    	} else {
-					    	    if(term.contains(querystr)) {
+					    	    if(term.contains(querystr.toLowerCase())) {
 							    	 int freq = (int) termsEnum.totalTermFreq();
 										result.addResult(term, freq);
 							    } 

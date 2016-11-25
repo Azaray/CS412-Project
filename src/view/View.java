@@ -9,6 +9,8 @@ import java.io.IOException;
 import java.nio.file.Path;
 import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.Arrays;
+import java.util.List;
 import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
@@ -41,10 +43,11 @@ import controller.Controller;
 import datastructures.QueryResult;
 import datastructures.QueryResultList;
 import datastructures.SearchField;
+import datastructures.SearchQuery;
 
 public class View extends JFrame implements Observer {
 
-	private String searchString;
+	private SearchQuery searchString;
 
 	private Controller Controller;
 	private JTextField searchField;
@@ -95,11 +98,11 @@ public class View extends JFrame implements Observer {
 		 this.isAdvanced = isAdvanced;
 	 }
 
-	public String getSearchString() {
+	public SearchQuery getSearchQuery() {
 		return searchString;
 	}
 
-	public void setSearchString(String searchString) {
+	public void setSearchString(SearchQuery searchString) {
 		this.searchString = searchString;
 	}
 
@@ -303,28 +306,14 @@ public class View extends JFrame implements Observer {
 			String text = doc.get(SearchField.DOCCONTENT.field());
 			text = text.toLowerCase();
 			expandedResult.setText(text);
-			String[] splitted;
-
-			if(isAdvanced() && advancedIsSentence() && isAdvanced) {
-				splitted = new String[1];
-				splitted[0] = searchString.substring(1, searchString.length()-1);
-			} else {
-				splitted = searchString.split(" ");
-			}
-
-
-			if(!advancedIsExact() || !isAdvanced) {
-				for(int y=0; y<splitted.length; y++) {
-					splitted[y] = splitted[y].substring(0, splitted[y].length()-1);
-				}
-			}
+			List<String> splitted = searchString.getHighlightQueryList();
 
 			Highlighter highlighter = expandedResult.getHighlighter();
 			Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
 			Highlighter.HighlightPainter painterNotExact = new DefaultHighlighter.DefaultHighlightPainter(Color.yellow);
 
-			for(int i=0; i<splitted.length; i++) {
-				String word = splitted[i].toLowerCase();
+			for(String str : splitted) {
+				String word = str.toLowerCase();
 				int p0 = 0;
 
 				int p1 = p0 + word.length();
