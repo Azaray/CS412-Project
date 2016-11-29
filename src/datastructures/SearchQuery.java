@@ -18,7 +18,8 @@ public class SearchQuery {
 
 	private SearchField mSearchField;
 	private String mQueryString;
-	private List<String> mQueryList = new ArrayList<String>();
+	private List<String> mFullQueryList = new ArrayList<String>();
+	private List<String> mHighlighQueryList = new ArrayList<String>();
 	private boolean mExactWord;
 	private boolean mSentenceSearch;
 
@@ -27,8 +28,10 @@ public class SearchQuery {
 		this.mExactWord = exact;
 		this.mSentenceSearch = sentenceSearch;
 		
-		if(mSentenceSearch)
+		if(mSentenceSearch) {
 			this.mQueryString = "\"" + query + "\"";
+			mHighlighQueryList.add(query);
+		}
 		else
 			FormatQuery(query);
 	}
@@ -41,7 +44,7 @@ public class SearchQuery {
 		return this.mSearchField;
 	}
 	
-	public boolean isentenceSearch() {
+	public boolean isSentenceSearch() {
 		return this.mSentenceSearch;
 	}
 	
@@ -49,8 +52,12 @@ public class SearchQuery {
 		return this.mExactWord;
 	}
 	
-	public List<String> getQueryList() {
-		return this.mQueryList;
+	public List<String> getFullQueryList() {
+		return this.mFullQueryList;
+	}
+	
+	public List<String> getHighlightQueryList() {
+		return this.mHighlighQueryList;
 	}
 	
 	public boolean isEmpty() {
@@ -67,7 +74,7 @@ public class SearchQuery {
 		generateQueryString();
 	}
 	
-	public String removeStopwords(String query) throws IOException {
+	private String removeStopwords(String query) throws IOException {
 		
 		AttributeFactory factory = AttributeFactory.DEFAULT_ATTRIBUTE_FACTORY;
 		
@@ -83,12 +90,19 @@ public class SearchQuery {
 		
 		StringBuilder strb = new StringBuilder();
 
+		String lastWord = "";
+		
 		while (tokenStream.incrementToken()) {
 			String term = charTermAttribute.toString();
-			strb.append(term + " ");
 			
-			if(!mQueryList.contains(term))
-				mQueryList.add(term);
+			mFullQueryList.add(term);
+			
+			if(!lastWord.equals("NOT") && !(term.equals("NOT") || term.equals("AND") || term.equals("OR"))) {
+				mHighlighQueryList.add(term);
+				strb.append(term + " ");
+			}
+			
+			lastWord = term;
 		}
 
 		tokenStream.close();
@@ -110,8 +124,8 @@ public class SearchQuery {
 			while (psf.incrementToken()) {		
 				String term = attr.toString();
 					
-				if(!mQueryList.contains(term))
-					mQueryList.add(term);
+				if(!mHighlighQueryList.contains(term) && !(term.equals("NOT") || term.equals("AND") || term.equals("OR")))
+					mHighlighQueryList.add(term);
 			}
 			
 			psf.close();
@@ -120,8 +134,21 @@ public class SearchQuery {
 	
 	private void generateQueryString() {
 		StringBuilder strb = new StringBuilder();
+		List<String> newList = new ArrayList<String>();
 		
-		for(String str : mQueryList) {
+		for(String word : mFullQueryList) { 
+			newList.add(word);
+			
+			for(String str : mHighlighQueryList) {
+				if(!word.equals(str) && word.contains(str)) {
+					newList.add(str);
+				}
+			}
+		}
+
+		mFullQueryList = newList;
+		
+		for(String str : mFullQueryList) {
 			if(!this.mExactWord) {
 				if(str.equals("AND") || str.equals("OR")|| str.equals("NOT"))
 					strb.append(str + " ");

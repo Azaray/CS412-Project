@@ -79,7 +79,7 @@ public class Controller implements ActionListener {
 
 	private void Go() {
 		try {
-			this.View.setSearchString(searchQuery.getQueryString());
+			this.View.setSearchString(searchQuery);
 			this.View.expandSuggestion();
 		} catch (BadLocationException e) {
 			e.printStackTrace();
