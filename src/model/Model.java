@@ -1,5 +1,6 @@
 package model;
 
+import java.util.List;
 import java.util.Observable;
 
 import datastructures.QueryResultList;
@@ -17,7 +18,7 @@ public class Model extends Observable {
 		notifyObservers("Refresh");
 	}
 	
-	public void Search(SearchQuery query) {
+	public void Search(List<SearchQuery> query) {
 		QueryResultList result = Searcher.Search(query);
 		setChanged();
 		notifyObservers(result);
