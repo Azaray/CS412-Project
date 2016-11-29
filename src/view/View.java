@@ -14,24 +14,12 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BoxLayout;
-import javax.swing.JButton;
-import javax.swing.JCheckBox;
-import javax.swing.JComboBox;
-import javax.swing.JFrame;
-import javax.swing.JLabel;
-import javax.swing.JMenu;
-import javax.swing.JMenuBar;
-import javax.swing.JMenuItem;
-import javax.swing.JPanel;
-import javax.swing.JScrollPane;
-import javax.swing.JTabbedPane;
-import javax.swing.JTextArea;
-import javax.swing.JTextField;
+import javax.swing.*;
 import javax.swing.text.BadLocationException;
 import javax.swing.text.DefaultHighlighter;
 import javax.swing.text.Highlighter;
 
+import controller.SuggestionsExpansion;
 import org.apache.lucene.document.Document;
 import org.apache.lucene.index.DirectoryReader;
 import org.apache.lucene.index.IndexReader;
@@ -51,14 +39,16 @@ public class View extends JFrame implements Observer {
 	private Controller Controller;
 	private JTextField searchField;
 	private QueryResultList suggestionsList;
-	private ArrayList<JLabel> suggestionLabels;
+	//private ArrayList<JLabel> suggestionLabels;
+	private DefaultListModel<String> listModel = new DefaultListModel<>();
+	private JList listSuggestions;
 	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
 	private static final long serialVersionUID = -7574733018145634162L;
 	private JLabel allResults;
 	private JLabel selectedResults;
-	private JComboBox resultsToGo;
-	private JButton go;
+	//private JComboBox resultsToGo;
+	//private JButton go;
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
 	private JCheckBox isExact;
@@ -218,17 +208,24 @@ public class View extends JFrame implements Observer {
 		JPanel suggestionListPanel = new JPanel();
 		suggestionListPanel.setLayout(new BoxLayout(suggestionListPanel, BoxLayout.Y_AXIS));
 
-		suggestionLabels = new ArrayList<JLabel>();
+		//suggestionLabels = new ArrayList<JLabel>();
+		listModel = new DefaultListModel<>();
 		ArrayList<JButton> actionsList = new ArrayList<>();
 
 		for(int i=0; i<10; i++) {
 			String iStr = Integer.toString(i+1);
-			JLabel suggestion = new JLabel();
-			suggestionLabels.add(suggestion);
-			suggestionLabels.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
-			suggestionListPanel.add(suggestionLabels.get(i));
+			//JLabel suggestion = new JLabel();
+			listModel.addElement("");
+			//suggestionLabels.add(suggestion);
+			//suggestionLabels.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
+			//suggestionListPanel.add(suggestionLabels.get(i));
 
 		}
+
+		listSuggestions = new JList(listModel);
+		listSuggestions.addMouseListener(new SuggestionsExpansion(listSuggestions, Controller));
+
+		suggestionListPanel.add(listSuggestions);
 
 		suggestionListPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		contentPane.add(suggestionListPanel, BorderLayout.WEST);
@@ -238,23 +235,23 @@ public class View extends JFrame implements Observer {
 
 		allResults = new JLabel();
 		selectedResults = new JLabel();
-		JLabel resulsToGoLabel = new JLabel("Result :");
-		resultsToGo = new JComboBox();
-		resultsToGo.addItem("No results");
+		//JLabel resulsToGoLabel = new JLabel("Result :");
+		//resultsToGo = new JComboBox();
+		//resultsToGo.addItem("No results");
 		JButton previous = new JButton("Previous");
 		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
 		next.addActionListener(Controller);
-		go = new JButton("Go");
-		go.addActionListener(Controller);
+		//go = new JButton("Go");
+		//go.addActionListener(Controller);
 
 		navigation.add(allResults);
 		navigation.add(selectedResults);
 		navigation.add(previous);
 		navigation.add(next);
-		navigation.add(resulsToGoLabel);
-		navigation.add(resultsToGo);
-		navigation.add(go);
+		//navigation.add(resulsToGoLabel);
+		//navigation.add(resultsToGo);
+		//navigation.add(go);
 
 
 		contentPane.add(navigation, BorderLayout.SOUTH);
@@ -296,7 +293,7 @@ public class View extends JFrame implements Observer {
 
 
 	public void expandSuggestion() throws BadLocationException {
-		int index = resultsToGo.getSelectedIndex()+(getPageNumber()*10);
+		int index = listSuggestions.getSelectedIndex()+(getPageNumber()*10);
 		
 		Document doc = readDocument(suggestionsList.getResults().get(index).getmDocID());
 		
@@ -354,16 +351,17 @@ public class View extends JFrame implements Observer {
 			finish = 10;
 		}
 
-		resultsToGo.removeAllItems();
+		//resultsToGo.removeAllItems();
 
 		for(int i=0; i<finish; i++) {
 			QueryResult result = suggestionsList.getResults().get(start+i);
-			suggestionLabels.get(i).setText("<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
-			resultsToGo.addItem(result.getmDocName());
+			//suggestionLabels.get(i).setText("<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
+			listModel.set(i, "<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
+			//resultsToGo.addItem(result.getmDocName());
 		}
 		
 		for(int i=finish; i<10; i++) {
-			suggestionLabels.get(i).setText("");
+			//suggestionLabels.get(i).setText("");
 		}
 
 		invalidate();
