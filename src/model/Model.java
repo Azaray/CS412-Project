@@ -1,15 +1,11 @@
 package model;
 
 import java.io.BufferedReader;
-import java.io.BufferedWriter;
-import java.io.File;
 import java.io.FileInputStream;
-import java.io.FileReader;
-import java.io.FileWriter;
-import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 
 import datastructures.QueryResultList;
@@ -23,7 +19,6 @@ public class Model extends Observable {
 
 	public Model(){
 		System.out.println("Model: Model()");
-		
 		readFiles(departments, "departments.txt");
 		readFiles(bureaus, "bureaus.txt");
 		readFiles(agencies, "agencies.txt");
@@ -35,7 +30,7 @@ public class Model extends Observable {
 		notifyObservers("Refresh");
 	}
 	
-	public void Search(SearchQuery query) {
+	public void Search(List<SearchQuery> query) {
 		QueryResultList result = Searcher.Search(query);
 		setChanged();
 		notifyObservers(result);
