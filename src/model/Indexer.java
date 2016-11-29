@@ -1,12 +1,15 @@
 package model;
 
+import java.io.BufferedWriter;
 import java.io.File;
 import java.io.FileInputStream;
+import java.io.FileWriter;
 import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.Charset;
 import java.nio.file.Path;
 import java.nio.file.Paths;
+import java.util.ArrayList;
 import java.util.Date;
 
 import org.apache.lucene.analysis.Analyzer;
@@ -34,6 +37,10 @@ import datastructures.SearchField;
 @SuppressWarnings("deprecation")
 public class Indexer {
 
+	static ArrayList<String> departments = new ArrayList<String>();
+	static ArrayList<String> bureaus = new ArrayList<String>();
+	static ArrayList<String> agencies = new ArrayList<String>();
+	
 	public static void indexFiles(String indexPath, String docsPath, boolean create) {
 		final File docDir = new File(docsPath);
 		if (!docDir.exists() || !docDir.canRead()) {
@@ -69,6 +76,7 @@ public class Indexer {
 		} catch (IOException e) {
 			System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
 		}
+		
 	}
 
 	private static void index(IndexWriter writer, File file) throws IOException {
@@ -113,7 +121,7 @@ public class Indexer {
 		}
 	}
 
-	private static void addTagToDoc(String tag, Element e, Document doc) {
+	private static void addTagToDoc(String tag, Element e, Document doc) throws IOException {
 
 		Elements elements = e.getElementsByTag(tag);
 
@@ -136,12 +144,49 @@ public class Indexer {
 				Field docnoField = new TextField(tag, str, Field.Store.YES);
 				doc.add(docnoField);
 		
-			} else {
+			} else {	
+				
 				String str = new String(elements.first().text().getBytes(), Charset.forName("UTF-8"));
-		
+			
+				if(tag.equals(SearchField.USDEPT.field()))
+					if(!departments.contains(str))
+						departments.add(str);
+				
+				if(tag.equals(SearchField.USBUREAU.field()))
+					if(!bureaus.contains(str))
+						bureaus.add(str);
+				
+				if(tag.equals(SearchField.AGENCY.field()))
+					if(!agencies.contains(str))
+						agencies.add(str);
+				
 				Field docnoField = new TextField(tag, str, Field.Store.YES);
 				doc.add(docnoField);
 			}
 		}
+		
+		File file1 = new File("departments.txt");
+		File file2 = new File("bureaus.txt");
+		File file3 = new File("agencies.txt");
+		
+		writeFile(file1, departments);
+		writeFile(file2, bureaus);
+		writeFile(file3, agencies);
 	}
+	
+	private static void writeFile(File file, ArrayList<String> list) {
+		try {
+			FileWriter fw = new FileWriter(file.getAbsoluteFile());
+			BufferedWriter bw = new BufferedWriter(fw);
+			for(int i =0; i<list.size(); i++){
+			bw.write(list.get(i));
+			bw.newLine();
+			}
+			bw.close();
+
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+	}
+
 }
