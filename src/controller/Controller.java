@@ -82,7 +82,7 @@ public class Controller implements ActionListener {
 		}
 	}
 
-	private void Go() {
+	public void Go() {
 		try {
 			this.View.setSearchString(searchQuery);
 			this.View.expandSuggestion();
