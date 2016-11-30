@@ -2,6 +2,8 @@ package controller;
 
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Observable;
 import java.util.Observer;
 
@@ -17,7 +19,7 @@ public class Controller implements ActionListener {
 
 	private Model Model;
 	private View View;
-	private SearchQuery searchQuery;
+	private List<SearchQuery> searchQuery;
 
 	public Controller() {
 		System.out.println("Controller: Controller()");
@@ -57,13 +59,16 @@ public class Controller implements ActionListener {
 
 	private void Search() {
 		this.View.setIsAdvanced(false);
-		searchQuery = new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false, false);
+		searchQuery = new ArrayList<SearchQuery>();
+		searchQuery.add(new SearchQuery(this.View.getSearchField(), SearchField.DOCCONTENT, false, false));
 		this.Model.Search(searchQuery);
 	}
 
 	private void AdvancedSearch() {
 		this.View.setIsAdvanced(true);
-		searchQuery = new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact(), this.View.advancedIsSentence());
+		searchQuery = new ArrayList<SearchQuery>();
+		searchQuery.add(new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact(), this.View.advancedIsSentence()));
+		searchQuery.add(new SearchQuery("food and drug administration", SearchField.AGENCY, false, true));
 		this.Model.Search(searchQuery);
 	}
 
@@ -120,6 +125,6 @@ public class Controller implements ActionListener {
 		myController.addView(myView);
 		
 		//Doesn't have to be called every time
-		//Indexer.indexFiles("index", "docs", true);
+//		Indexer.indexFiles("index", "docs", true);
 	}
 }

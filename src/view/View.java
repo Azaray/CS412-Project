@@ -34,7 +34,7 @@ import datastructures.SearchQuery;
 
 public class View extends JFrame implements Observer {
 
-	private SearchQuery searchString;
+	private List<SearchQuery> searchString = new ArrayList<SearchQuery>();
 
 	private Controller Controller;
 	private JTextField searchField;
@@ -87,12 +87,16 @@ public class View extends JFrame implements Observer {
 		 this.isAdvanced = isAdvanced;
 	 }
 
-	public SearchQuery getSearchQuery() {
+	public List<SearchQuery> getSearchQuery() {
 		return searchString;
 	}
 
-	public void setSearchString(SearchQuery searchString) {
-		this.searchString = searchString;
+	public void addSearchString(SearchQuery searchString) {
+		this.searchString.add(searchString);
+	}
+	
+	public void setSearchString(List<SearchQuery> searchString) {
+		this.searchString = (searchString);
 	}
 
 	private void setSuggestionsList(QueryResultList documents) {
@@ -302,7 +306,10 @@ public class View extends JFrame implements Observer {
 			String text = doc.get(SearchField.DOCCONTENT.field());
 			text = text.toLowerCase();
 			expandedResult.setText(text);
-			List<String> splitted = searchString.getHighlightQueryList();
+			List<String> splitted = new ArrayList<String>();
+			
+			for(SearchQuery squery : searchString)
+				splitted.addAll(squery.getHighlightQueryList());
 
 			Highlighter highlighter = expandedResult.getHighlighter();
 			Highlighter.HighlightPainter painterExact = new DefaultHighlighter.DefaultHighlightPainter(Color.green);
@@ -330,10 +337,7 @@ public class View extends JFrame implements Observer {
 						highlighter.addHighlight(p0, p1, painterExact);
 					}
 				}
-
-
 			}
-
 
 			getContentPane().add(scroll, BorderLayout.EAST);
 			invalidate();
