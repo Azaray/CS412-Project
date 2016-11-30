@@ -315,7 +315,7 @@ public class View extends JFrame implements Observer {
 				date = "Date unavailable";
 			}
 			String text2 = doc.get(SearchField.DOCCONTENT.field());
-			text2 = text2.replaceAll("&hyph;", "-");
+			text2 = date + "\r\n\r\n" + text2.replaceAll("&hyph;", "-");
 
 
 
@@ -359,18 +359,16 @@ public class View extends JFrame implements Observer {
 			//resultExpanded.setLayout(new BoxLayout(resultExpanded, BoxLayout.Y_AXIS));
 
 			expandedID = new JLabel(title);
-			if(date.length() > 60) {
-				date = date.substring(0, 40) + "...";
-			}
 
-			expandedDate = new JLabel(date);
 
-			scroll.setSize(new Dimension(900, 600));
+			//expandedDate = new JLabel(date);
 
 			resultExpanded.removeAll();
 			resultExpanded.add(expandedID);
-			resultExpanded.add(expandedDate);
+			//resultExpanded.add(expandedDate);
 			resultExpanded.add(scroll);
+
+			scroll.setSize(new Dimension(600, 600));
 
 			//getContentPane().remove(resultExpanded);
 			//getContentPane().add(resultExpanded, BorderLayout.EAST);
