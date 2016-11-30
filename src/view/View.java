@@ -54,9 +54,12 @@ public class View extends JFrame implements Observer {
 	private JCheckBox isExact;
 	private JCheckBox isSentence;
 	private boolean isAdvanced;
+	private JLabel expandedID;
+	private JPanel resultExpanded;
 
 	private boolean isExpanded;
 	private JTextField advancedSearchField;
+	private JLabel expandedDate;
 
 	public View(Controller myController) {
 
@@ -233,6 +236,9 @@ public class View extends JFrame implements Observer {
 
 		suggestionListPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		contentPane.add(suggestionListPanel, BorderLayout.WEST);
+		resultExpanded = new JPanel();
+		resultExpanded.setLayout(new BoxLayout(resultExpanded, BoxLayout.Y_AXIS));
+		getContentPane().add(resultExpanded, BorderLayout.EAST);
 
 		JPanel navigation = new JPanel();
 		navigation.setLayout(new FlowLayout());
@@ -298,14 +304,23 @@ public class View extends JFrame implements Observer {
 
 	public void expandSuggestion() throws BadLocationException {
 		int index = listSuggestions.getSelectedIndex()+(getPageNumber()*10);
-		
 		Document doc = readDocument(suggestionsList.getResults().get(index).getmDocID());
 		
 		if(doc != null) {
-			
-			String text = doc.get(SearchField.DOCCONTENT.field());
-			text = text.toLowerCase();
-			expandedResult.setText(text);
+			String title = doc.get(SearchField.DOCNO.field());
+			String date = doc.get(SearchField.DATE.field());
+			if(date != null) {
+
+			} else {
+				date = "Date unavailable";
+			}
+			String text2 = doc.get(SearchField.DOCCONTENT.field());
+			text2 = text2.replaceAll("&hyph;", "-");
+
+
+
+			expandedResult.setText(text2);
+			String text = text2.toLowerCase();
 			List<String> splitted = new ArrayList<String>();
 			
 			for(SearchQuery squery : searchString)
@@ -339,7 +354,26 @@ public class View extends JFrame implements Observer {
 				}
 			}
 
-			getContentPane().add(scroll, BorderLayout.EAST);
+
+			//resultExpanded = new JPanel();
+			//resultExpanded.setLayout(new BoxLayout(resultExpanded, BoxLayout.Y_AXIS));
+
+			expandedID = new JLabel(title);
+			if(date.length() > 60) {
+				date = date.substring(0, 40) + "...";
+			}
+
+			expandedDate = new JLabel(date);
+
+			scroll.setSize(new Dimension(900, 600));
+
+			resultExpanded.removeAll();
+			resultExpanded.add(expandedID);
+			resultExpanded.add(expandedDate);
+			resultExpanded.add(scroll);
+
+			//getContentPane().remove(resultExpanded);
+			//getContentPane().add(resultExpanded, BorderLayout.EAST);
 			invalidate();
 			validate();
 			repaint();
