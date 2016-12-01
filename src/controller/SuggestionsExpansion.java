@@ -18,8 +18,11 @@ public class SuggestionsExpansion implements MouseListener {
 
     @Override
     public void mouseClicked(MouseEvent e) {
-        suggestionsList.getSelectedValue();
-        controller.Go();
+        String docID = suggestionsList.getSelectedValue().toString();
+        if(!docID.equals("No results") && !docID.equals("")) {
+            controller.Go();
+        }
+
     }
 
     @Override

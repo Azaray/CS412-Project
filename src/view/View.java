@@ -304,6 +304,7 @@ public class View extends JFrame implements Observer {
 
 	public void expandSuggestion() throws BadLocationException {
 		int index = listSuggestions.getSelectedIndex()+(getPageNumber()*10);
+
 		Document doc = readDocument(suggestionsList.getResults().get(index).getmDocID());
 		
 		if(doc != null) {
@@ -388,6 +389,9 @@ public class View extends JFrame implements Observer {
 		}
 
 		//resultsToGo.removeAllItems();
+		//listModel.removeAllElements();
+
+
 
 		for(int i=0; i<finish; i++) {
 			QueryResult result = suggestionsList.getResults().get(start+i);
@@ -397,7 +401,12 @@ public class View extends JFrame implements Observer {
 		}
 		
 		for(int i=finish; i<10; i++) {
+			listModel.set(i, "");
 			//suggestionLabels.get(i).setText("");
+		}
+
+		if(suggestionsList.size() == 0) {
+			listModel.set(0, "No results");
 		}
 
 		invalidate();
