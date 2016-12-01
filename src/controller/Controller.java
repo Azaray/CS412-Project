@@ -52,6 +52,8 @@ public class Controller implements ActionListener {
 			Back();
 		else if(e.getActionCommand().equals("Advanced Search"))
 			AdvancedSearch();
+		else if (e.getActionCommand().equals("Save History"))
+			SearchQuery.saveSearch();
 
 		System.out.println("Controller: actionPerformed() : The " + e.getActionCommand() + " button is clicked at "
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());

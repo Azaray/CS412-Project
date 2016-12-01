@@ -129,18 +129,20 @@ public class View extends JFrame implements Observer {
 		JMenu menuFile = new JMenu("File");
 		
 		// Create menu items
+		JMenuItem SaveHistory = new JMenuItem("Save History");
 		JMenuItem menuRefresh = new JMenuItem("Refresh");
 		JMenuItem menuExit = new JMenuItem("Exit");
 		
 		// Add the menu bar to the frame, and the menu items to the menu
 		setJMenuBar(menuBar);
 		menuBar.add(menuFile);
+		menuFile.add(SaveHistory);
 		menuFile.add(menuRefresh);
 		menuFile.add(menuExit);
 		
 		// Add action listeners to the menu items
 		menuRefresh.addActionListener(Controller);
-
+		SaveHistory.addActionListener(Controller);
 		menuExit.addActionListener(Controller);
 	}
 
