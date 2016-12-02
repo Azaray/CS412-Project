@@ -41,6 +41,8 @@ import datastructures.QueryResultList;
 import datastructures.SearchField;
 import datastructures.SearchQuery;
 
+import static javax.swing.ScrollPaneConstants.HORIZONTAL_SCROLLBAR_NEVER;
+
 public class ResultsView extends JFrame implements Observer {
 
 	private List<SearchQuery> searchString = new ArrayList<SearchQuery>();
@@ -62,8 +64,6 @@ public class ResultsView extends JFrame implements Observer {
 
 	public ResultsView(Controller myController, SearchView searchView) {
 
-		System.out.println("View: View()");
-		System.out.println("View: adding controller");
 		Controller = myController;
 		SearchView = searchView;
 
@@ -87,7 +87,10 @@ public class ResultsView extends JFrame implements Observer {
 
 		listSuggestions = new JList<String>(listModel);
 		listSuggestions.addMouseListener(new SuggestionsExpansion(listSuggestions, Controller));
+
 		scroll2 = new JScrollPane(listSuggestions);
+		//scroll2.setHorizontalScrollBarPolicy(HORIZONTAL_SCROLLBAR_NEVER);
+		scroll2.setMaximumSize(new Dimension(330, 900));
 
 		suggestionListPanel.add(scroll2);
 		suggestionListPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
@@ -139,7 +142,7 @@ public class ResultsView extends JFrame implements Observer {
 		expandedResult.setWrapStyleWord(true);
 
 		scroll = new JScrollPane(expandedResult, JScrollPane.VERTICAL_SCROLLBAR_ALWAYS,
-				JScrollPane.HORIZONTAL_SCROLLBAR_NEVER);
+				HORIZONTAL_SCROLLBAR_NEVER);
 
 		pack();
 		setSize(800, 500);
@@ -187,7 +190,10 @@ public class ResultsView extends JFrame implements Observer {
 			String text2 = doc.get(SearchField.DOCCONTENT.field());
 			text2 = date + "\r\n\r\n" + text2.replaceAll("&hyph;", "-");
 
+
+
 			expandedResult.setText(text2);
+
 			String text = text2.toLowerCase();
 			List<String> splitted = new ArrayList<String>();
 
@@ -212,7 +218,6 @@ public class ResultsView extends JFrame implements Observer {
 						while (true) {
 							p0 = text.indexOf(word, p0 + 1);
 							p1 = p0 + word.length();
-							System.out.println(word + ":" + p0 + ":" + p1);
 							if (p0 < 0) {
 								break;
 							}
@@ -235,10 +240,9 @@ public class ResultsView extends JFrame implements Observer {
 
 			resultExpanded.removeAll();
 			resultExpanded.add(expandedID);
-			// resultExpanded.add(expandedDate);
 			resultExpanded.add(scroll);
 
-			scroll.setSize(new Dimension(600, 600));
+			//scroll.setSize(new Dimension(250, 600));
 
 			invalidate();
 			validate();
