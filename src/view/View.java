@@ -43,11 +43,12 @@ public class View extends JFrame implements Observer {
 	private JList listSuggestions;
 	private int pageNumber;
 	private final JMenuBar menuBar = new JMenuBar();
-	private static final long serialVersionUID = -7574733018145634162L;
+	private static final long seerialVersionUID = -7574733018145634162L;
 	private JLabel allResults;
 	private JLabel selectedResults;
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
+	private JScrollPane scroll2;
 	private JCheckBox isExact;
 	private JCheckBox isSentence;
 	private boolean isAdvanced;
@@ -141,9 +142,6 @@ public class View extends JFrame implements Observer {
 		menuExit.addActionListener(Controller);
 	}
 
-	public boolean getIsExpanded() {
-		return isExpanded;
-	}
 
 
 	private void createAndShowGUI() {
@@ -221,8 +219,8 @@ public class View extends JFrame implements Observer {
 
 		listSuggestions = new JList(listModel);
 		listSuggestions.addMouseListener(new SuggestionsExpansion(listSuggestions, Controller));
-
-		suggestionListPanel.add(listSuggestions);
+		scroll2 = new JScrollPane(listSuggestions);
+		suggestionListPanel.add(scroll2);
 
 		suggestionListPanel.setAlignmentX(Component.LEFT_ALIGNMENT);
 		contentPane.add(suggestionListPanel, BorderLayout.WEST);
@@ -366,7 +364,7 @@ public class View extends JFrame implements Observer {
 
 		for(int i=0; i<finish; i++) {
 			QueryResult result = suggestionsList.getResults().get(start+i);
-			listModel.set(i, "<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
+			listModel.set(i, "<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result, 7) + "</html>");
 		}
 		
 		for(int i=finish; i<10; i++) {
@@ -409,11 +407,16 @@ public class View extends JFrame implements Observer {
 		return null;
 	}
 	
-	private String getMentions(QueryResult result) {
+	private String getMentions(QueryResult result, int limit) {
+		int i = 0;
 		StringBuilder strb = new StringBuilder();
 		Map<String, Integer> mentions = result.getmQueryMentions();
 		for(String word : mentions.keySet()) {
+			if(i > limit) {
+				break;
+			}
 			strb.append(word + " mentioned " + mentions.get(word) + " time(s). <br>");
+			i++;
 		}
 		
 		return strb.toString();
