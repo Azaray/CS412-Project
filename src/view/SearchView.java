@@ -27,6 +27,7 @@ import javax.swing.ScrollPaneConstants;
 import controller.Controller;
 import datastructures.SearchField;
 import datastructures.SearchQuery;
+import datastructures.SearchQueryList;
 import model.HistoryWriter;
 
 public class SearchView extends JFrame implements Observer {
@@ -211,15 +212,15 @@ public class SearchView extends JFrame implements Observer {
 		
 		JPanel panel = new JPanel();
 		panel.add(new JLabel("Choose a field to add:"));
-		DefaultComboBoxModel<List<SearchQuery>> model = new DefaultComboBoxModel<List<SearchQuery>>();
+		DefaultComboBoxModel<SearchQueryList> model = new DefaultComboBoxModel<SearchQueryList>();
 		
 		List<List<SearchQuery>> history = HistoryWriter.returnHistory();
 		
 		for (List<SearchQuery> list : history) {
-			model.addElement(list);
+			model.addElement(new SearchQueryList(list));
 		}
 
-		JComboBox<List<SearchQuery>> comboBox = new JComboBox<List<SearchQuery>>(model);
+		JComboBox<SearchQueryList> comboBox = new JComboBox<SearchQueryList>(model);
 		panel.add(comboBox);
 
 		int result = JOptionPane.showConfirmDialog(null, panel, "Load History", JOptionPane.OK_CANCEL_OPTION,
@@ -227,7 +228,7 @@ public class SearchView extends JFrame implements Observer {
 		switch (result) {
 		case JOptionPane.OK_OPTION:
 			System.out.println("You selected " + comboBox.getSelectedItem());
-			Controller.Search((List<SearchQuery>) comboBox.getSelectedItem());
+			Controller.Search((List<SearchQuery>) ((SearchQueryList) comboBox.getSelectedItem()).list);
 			break;
 		default:
 			searchFieldToAdd = null;
