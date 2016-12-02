@@ -39,7 +39,6 @@ public class View extends JFrame implements Observer {
 	private Controller Controller;
 	private JTextField searchField;
 	private QueryResultList suggestionsList;
-	//private ArrayList<JLabel> suggestionLabels;
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList listSuggestions;
 	private int pageNumber;
@@ -47,8 +46,6 @@ public class View extends JFrame implements Observer {
 	private static final long serialVersionUID = -7574733018145634162L;
 	private JLabel allResults;
 	private JLabel selectedResults;
-	//private JComboBox resultsToGo;
-	//private JButton go;
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
 	private JCheckBox isExact;
@@ -57,9 +54,7 @@ public class View extends JFrame implements Observer {
 	private JLabel expandedID;
 	private JPanel resultExpanded;
 
-	private boolean isExpanded;
 	private JTextField advancedSearchField;
-	private JLabel expandedDate;
 
 	public View(Controller myController) {
 
