@@ -129,19 +129,16 @@ public class SearchView extends JFrame implements Observer {
 		// Create menu items
 		JMenuItem SaveHistory = new JMenuItem("Load History");
 		JMenuItem menuIndex = new JMenuItem("Index Dataset");
-		JMenuItem menuExit = new JMenuItem("Exit");
 
 		// Add the menu bar to the frame, and the menu items to the menu
 		setJMenuBar(menuBar);
 		menuBar.add(menuFile);
 		menuFile.add(SaveHistory);
 		menuFile.add(menuIndex);
-		menuFile.add(menuExit);
 
 		// Add action listeners to the menu items
 		menuIndex.addActionListener(Controller);
 		SaveHistory.addActionListener(Controller);
-		menuExit.addActionListener(Controller);
 	}
 
 	public void addSearchField() {
@@ -161,7 +158,6 @@ public class SearchView extends JFrame implements Observer {
 				repaint();
 			}
 		}
-
 	}
 
 	public void removeSearchField(SearchField field) {
@@ -208,7 +204,7 @@ public class SearchView extends JFrame implements Observer {
 
 	}
 
-	public void LoadHistory() {
+	public void loadHistory() {
 		
 		JPanel panel = new JPanel();
 		panel.add(new JLabel("Choose a field to add:"));

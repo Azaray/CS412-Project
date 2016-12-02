@@ -259,3 +259,114 @@ AGENCY: Federal Aviation Administration (FAA) DOT.
 AGENCY: Customs Service, Department of the Treasury.
 AGENCY: Office of Foreign Assets Control, Treasury.
 AGENCY: Internal Revenue Service, Treasury.
+AGENCY: International Trade Administration, Import Administration, Department of Commerce.
+AGENCY: U.S. Army Corps of Engineers, Jacksonville District, DOD.
+AGENCY: U.S. Army Corps of Engineers, DoD.
+AGENCY: Health Care Financing Administration, HHS. The Health Care Financing Administration (HCFA), Department of Health and Human Services, has submitted to OMB the following proposals for the collection of information in compliance with the Paperwork Reduction Act (Pub. L. 96&hyph;511). 1. Type of Request: New collection; Title of Information Collection: Evaluation of the Medicare Case Management Demonstration; Form No.: HCFA&hyph;161; Use: To assess the impact of case management for patients with high cost conditions on quality of care, satisfaction with care, and use and cost of services not covered by Medicare; Frequency: One time; Respondents: Individuals or households; Estimated Number of Responses: 1,800; Average Hours Per Response: .28; Total Estimated Burden Hours: 504. 2. Type of Request: New Collection; Title of Information Collection: Evaluation of the Medicaid Uninsured Demonstrations; Form No.: HCFA&hyph;R&hyph;160; Use: Telephone surveys of individual purchasers and employers offering the demonstration insurance package and comparison group members. Surveys will collect information on demographic characteristics, prior insurance coverage, health status, access to care, and use of services, as well as, employer reasons for participating and their experience with the demonstration; Frequency: Annually; Respondents: Individuals or households; Estimated Number of Responses: Individuals (2,002), Employers (196); Average Hours Per Response: Individuals (.42), Employers (.25); Total Estimated Burden Hours: 1,508. 3. Type of Request: Reinstatement; Title of Information Collection: Internal Revenue Service (IRS), Social Security Administration (SSA), and HCFA Data Match; Form No.: HCFA&hyph;R&hyph;137; Use: Employers identified through a match of IRS, SSA, and Medicare records will be contacted concerning group health plan coverage of identified individuals to ensure compliance with Medicare Secondary Payor provisions; Frequency: Annually; Respondents: Nonprofit organizations, Federal agencies or employees, businesses or other for profit; Estimated Number of Responses: 423,095; Average Hours Per Response: 5.8560843; Total Estimated Burden Hours: 2,477,680. 4. Type of Request: Extension; Title of Information Collection: Analysis of Malpractice Premium Data; Form No.: HCFA&hyph;R&hyph;143; Use: Survey of physician owned medical liability insurers for use in computing the input component of the physician liability component of the Geographic Practice Cost Index and the Medicare Economic Index; Frequency: Annually; Respondents: State or local governments, Small businesses or organizations, Nonprofit organizations; Estimated Number of Responses: Reporting (544), Recordkeeping (68); Average Hours Per Response: Reporting (.25), Recordkeeping (1); Total Estimated Burden Hours: 204. 5. Type of Request: Reinstatement; Title of Information Collection: Emergency & Foreign Hospital Services_Beneficiary Statement in Canadian Travel Claims; Form No.: HCFA&hyph;R&hyph;96; Use: In Canadian travel claims, a statement is required from the beneficiary indicating point of entry into Canada; route being traveled at time of emergency, and an explanation of any deviation from intended route or nonroutine stopover. The intermediary uses this information to determine if the beneficiary was traveling between Alaska and another State through Canada by the most direct route without unreasonable delay to acquire medical care and thus, entitled to benefits; Frequency: On occasion; Respondents: Individuals or households; Estimated Number of Responses: 1,700; Average Hours Per Response: .25; Total Estimated Burden Hours: 425. (recordkeeping). 6. Type of Request: Revision; Title of Information Collection: Survey Report Form; Form No.: HCFA&hyph;1557; Use: This survey form is an instrument used by the State agency to record data collected in order to determine compliance with Clinical Laboratory Improvement Amendments. This information is needed for laboratory certification and recertification; Frequency: Biennially; Respondents: State or local governments, Businesses or other for profit, Federal agencies or employees, Small businesses or organizations; Estimated Number of Responses: 31,200; Average Hours Per Response: .54; Total Estimated Burden Hours: 16,848. (recordkeeping). 7. Type of Request: Extension; Title of Information Collection: Medicaid Management Information System (MMIS); Form No.: HCFA&hyph;R&hyph;4; Use: The MMIS is a State operated, federally mandated, computer system used for automated Medicaid claims processing and information retrieval for program management. Data elements represent the federally imposed recordkeeping requirements of MMIS; Frequency: Annually; Respondents: State or local governments; Estimated Number of Responses: 48; Average Hours Per Response: 45,965; Total Estimated Burden Hours: 2,206,320. Additional Information or Comments: Call the Reports Clearance Office on (410) 966&hyph;5536 for copies of the clearance request packages. Written comments and recommendations for the proposed information collections should be sent within 30 days of this notice directly to the OMB Desk Officer designated at the following address: OMB Human Resources and Housing Branch, Attention: Allison Eydt, New Executive Office Building, room 3001, Washington, DC 20503. Dated: January 26, 1994.
+AGENCY: Substance Abuse and Mental Health Services Administration, HHS, (Formerly: National Institute on Drug Abuse, ADAMHA, HHS).
+AGENCY: Bureau of Labor Statistics, Labor.
+AGENCY: U.S. Customs Service, Department of the Treasury.
+AGENCY: Office of the Assistant Secretary for Public and Indian Housing, HUD.
+AGENCY: Economic Development Administration (EDA), Commerce.
+agency: National Marine Fisheries Service (NMFS), National Oceanic and Atmospheric Administration (NOAA), Commerce.
+AGENCY: Per Diem, Travel and Transportation Allowance Committee.
+agency: Department of Education.
+AGENCY: Office of Policy, Planning and Program Evaluation, U.S. Department of Energy.
+AGENCY: Department of Energy, Idaho Operations Office.
+agency: Environmental Protection Agency (EPA).
+AGENCY: Fish and Wildlife Service, Department of the Interior.
+agency: Bureau of Land Management, Montana State Office, Interior.
+AGENCY: National Park Service; Delaware and Lehigh Navigation Canal National Heritage Corridor Commission, Interior.
+AGENCY: National Park Service; Upper Delaware Citizens Advisory Council.
+AGENCY: Employment Service, Employment and Training Administration, Labor.
+agency: Immigration and Naturalization Service, Justice.
+AGENCY: Office of Ocean and Coastal Resource Management, National Ocean Service, National Oceanic and Atmospheric Administration (NOAA), DOC.
+agency: National Marine Fisheries Service (NMFS) NOAA, Commerce.
+AGENCY: Southeastern Power Administration (Southeastern), DOE.
+agency: Federal Financial Institutions Examination Council.
+AGENCY: Department of the Interior.
+AGENCY: National Endowment for the Humanities.
+AGENCY: Nuclear Regulatory Commission (NRC).
+AGENCY: Securities and Exchange Commission (``SEC'' or the ``Commission'').
+agency: Securities and Exchange Commission (``SEC'' or ``Commission'').
+AGENCY CONTACT: Tom Kowalski, Case Operations, United States Parole Commission, (301) 492&hyph;5962. Dated: January 25, 1994.
+AGENCY CONTACT: Jeffrey Kostbar, Case Analyst, National Appeals Board, United States Parole Commission, (301) 492&hyph;5968. Dated: January 25, 1994.
+agency: Commodity Futures Trading Commission.
+AGENCY: Equal Employment Opportunity Commission.
+AGENCY: Bureau of the Public Debt, Fiscal Service, Department of the Treasury.
+agency: National Marine Fisheries Services (NMFS), National Oceanic and Atmospheric Administration (NOAA), Commerce.
+AGENCY: Environmental Protection Agency (``EPA'').
+AGENCY: Environmental Protection Agency (Agency).
+AGENCY: Consumer Product Safety Commission.
+AGENCY: Ballistic Missile Defense Organization (BMDO), DOD.
+AGENCY: U.S. Army Corps of Engineers, Savannah District, DOD.
+agency: U.S. Environmental Protection Agency (USEPA).
+AGENCY: Federal Election Commission.
+AGENCY: Office of Inspector General, Office of the Secretary, HHS.
+agency: Office of the Secretary, Interior.
+agency: Minerals Management Service, Interior.
+agency: National Civilian Community Corps.
+AGENCY: National Science Foundation (NSF).
+AGENCY: Office of Management and Budget.
+AGENCY: Department of Transportation (DOT), Office of the Secretary.
+AGENCY: United States-Canada Free Trade Agreement, Binational Secretariat, United States Section, International Trade Administration, Department of Commerce.
+AGENCY: National Archives and Records Administration.
+AGENCY: Cooperative State Research Service, USDA.
+AGENCY: Securities and Exchange Commission (``Commission'').
+AGENCY: Department of the Treasury.
+AGENCY: Department of Defense, United States Army.
+AGENCY: Office of the Assistant Secretary for Management and Budget, Office of the Secretary, HHS.
+AGENCY: Health Resources and Services Administration (HRSA).
+AGENCY: Department of the Interior, U.S. Fish and Wildlife Service.
+AGENCY: National Park Service; Interior.
+AGENCY: National Park Service, Department of the Interior.
+AGENCY: Office of Procurement, Procurement Policy Division, National Aeronautics and Space Administration.
+AGENCY: Import Administration/International Trade Administration, Commerce.
+AGENCY: Health Resources and Services Administration (HRSA), PHS, HHS.
+AGENCY: Office of the Secretary, DOT, and Department of Commerce.
+AGENCY: National Credit Union Administration (NCUA).
+AGENCY: United States Arms Control and Disarmament Agency (ACDA).
+AGENCY: Office of Environmental Restoration and Waste Management, U.S. Department of Energy.
+AGENCY: GSA.
+AGENCY: National Archives and Records Administration, Office of Records Administration.
+AGENCY: Prospective Payment Assessment Commission.
+AGENCY: Securities and Exchange Commission (the ``SEC'').
+agency: National Highway Traffic Safety Administration (NHTSA), DOT.
+AGENCY: Employment Standards Administration, Office of Workers' Compensation Programs, Labor.
+AGENCY : Social Security Administration, HHS.
+AGENCY: Postal Rate Commission.
+AGENCY: Federal Supply Service, GSA.
+AGENCY: Information Resources Management Service, GSA.
+agency: National Institute of Standards and Technology, DOC.
+agency: National Marine Fisheries Service (NMFS), NOAA, Commerce.
+agency: U.S. Department of Energy, Richland Operations Office.
+AGENCY: Office of Energy Efficiency and Renewable Energy, DOE.
+agency: Federal Trade Commission.
+AGENCY: Office of Justice Programs, Bureau of Justice Assistance, Department of Justice.
+AGENCY: Institute of Museum Services, NFAH.
+AGENCY: North American Free Trade Agreement, NAFTA Secretariat, United States Section, International Trade Administration, Department of Commerce.
+AGENCY: Office of the Secretary, Department of Transportation.
+AGENCY: Office of the Secretary; Forest Service, USDA.
+AGENCY: Bureau of Export Administration, Commerce.
+agency: Drug Enforcement Administration (DEA), Justice.
+AGENCY: Agricultural 1 Marketing Service, USDA. 1 Among such other products are the following: Raw nuts; Christmas trees and evergreens; flowers and flower bulbs; and onion sets.
+AGENCY: USSTRATCOM, Department of Defense.
+AGENCY: Energy Information Administration, Energy.
+AGENCY: Energy Information Administration, Department of Energy.
+AGENCY: United States Fire Administration, FEMA.
+AGENCY: Administration on Developmental Disabilities (ADD), Administration for Children and Families (ACF).
+AGENCY: Center for Mental Health Services, Substance Abuse and Mental Health Services Administration (SAMHSA), HHS.
+AGENCY: Department of Transportation.
+AGENCY: Office of the Comptroller of the Currency, Treasury.
+AGENCY: Departmental Offices, Department of the Treasury.
+AGENCY: Federal Crop Insurance Corporation, USDA.
+AGENCY: Office of the Under Secretary for Domestic Finance, Treasury.
+AGENCY: Federal Grain Inspection Service, USDA.
+AGENCY: Office of Inspector General (OIG), HHS.
+AGENCY: Federal Transit Administration, DOT.
+AGENCY: U.S. Department of Energy.
+AGENCY: Energy Efficiency and Renewable Energy, DOE.
+AGENCY: Agency for Toxic Substances and Disease Registry (ATSDR), Public Health Service (PHS), Department of Health and Human Services (HHS).
+AGENCY: National Institutes of Health, PHS, HHS.
+AGENCY: Bureau of Land Management (BLM), Department of the Interior.
+AGENCY: National Institute for Literacy Advisory Board, National Institute for Literacy.

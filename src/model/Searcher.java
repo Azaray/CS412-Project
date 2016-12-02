@@ -34,7 +34,7 @@ public class Searcher {
 
 		if (!searchQueryList.isEmpty()) {
 			try {
-				Path path = Paths.get("index/live");
+				Path path = Paths.get("index");
 				IndexReader reader = DirectoryReader.open(FSDirectory.open(path));
 				IndexSearcher searcher = new IndexSearcher(reader);
 

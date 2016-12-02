@@ -66,7 +66,7 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("Back"))
 			Back();	
 		else if (e.getActionCommand().equals("Load History"))
-			mSearchView.LoadHistory();
+			mSearchView.loadHistory();
 		else {
 			for (SearchField sf : SearchField.values()) {
 				if (e.getActionCommand().equals("Remove" + sf.field()))
@@ -163,8 +163,7 @@ public class Controller implements ActionListener {
 
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
-		myController.addView(myView);;
-
+		myController.addView(myView);
 	}
 	
 	public ArrayList<String> getComboBoxValues(SearchField field) {

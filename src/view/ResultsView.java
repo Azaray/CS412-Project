@@ -307,7 +307,7 @@ public class ResultsView extends JFrame implements Observer {
 
 	private Document readDocument(int docId) {
 
-		Path path = Paths.get("index/live");
+		Path path = Paths.get("index");
 		IndexReader reader;
 		IndexSearcher searcher;
 		try {

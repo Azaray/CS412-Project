@@ -72,6 +72,14 @@ public class Indexer {
 
 			Date end = new Date();
 			System.out.println(end.getTime() - start.getTime() + " total liseconds");
+			
+			File file1 = new File("departments.txt");
+			File file2 = new File("bureaus.txt");
+			File file3 = new File("agencies.txt");
+			
+			writeFile(file1, departments);
+			writeFile(file2, bureaus);
+			writeFile(file3, agencies);
 
 		} catch (IOException e) {
 			System.out.println(" caught a " + e.getClass() + "\n with message: " + e.getMessage());
@@ -164,14 +172,6 @@ public class Indexer {
 				doc.add(docnoField);
 			}
 		}
-		
-		File file1 = new File("departments.txt");
-		File file2 = new File("bureaus.txt");
-		File file3 = new File("agencies.txt");
-		
-		writeFile(file1, departments);
-		writeFile(file2, bureaus);
-		writeFile(file3, agencies);
 	}
 	
 	private static void writeFile(File file, ArrayList<String> list) {
