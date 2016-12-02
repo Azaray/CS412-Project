@@ -42,4 +42,14 @@ public enum SearchField {
 	public String description() {
 		return mDescription;
 	}
+	
+	public static SearchField getItem(String val) {
+
+		for(SearchField sf : SearchField.values()) {
+			if(sf.description().equals(val))
+				return sf;
+		}
+		
+		return null;
+	}
 }

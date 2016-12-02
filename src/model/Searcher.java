@@ -21,65 +21,68 @@ import org.apache.lucene.search.TopDocs;
 import org.apache.lucene.store.FSDirectory;
 import org.apache.lucene.util.BytesRef;
 
-import datastructures.QueryResult; 
+import datastructures.QueryResult;
 import datastructures.QueryResultList;
 import datastructures.SearchField;
 import datastructures.SearchQuery;
 
 public class Searcher {
-	
+
 	public static QueryResultList Search(List<SearchQuery> searchQueryList) {
-		
+
 		QueryResultList queryResults = new QueryResultList();
-		
-		if(!searchQueryList.isEmpty()) {
+
+		if (!searchQueryList.isEmpty()) {
 			try {
 				Path path = Paths.get("index/live");
 				IndexReader reader = DirectoryReader.open(FSDirectory.open(path));
 				IndexSearcher searcher = new IndexSearcher(reader);
-				
+
 				Analyzer analyzer = new StandardAnalyzer(EnglishAnalyzer.getDefaultStopSet());
 
 				BooleanQuery.Builder booleanQuery = new BooleanQuery.Builder();
-					
-				for(SearchQuery searchQuery : searchQueryList) {
+
+				for (SearchQuery searchQuery : searchQueryList) {
 					QueryParser parser = new QueryParser(searchQuery.getSearchField().field(), analyzer);
 					Query query = parser.parse(searchQuery.getQueryString().trim());
-				    booleanQuery.add(query, BooleanClause.Occur.MUST);
+					booleanQuery.add(query, BooleanClause.Occur.MUST);
 				}
-				
+
 				TopDocs results = searcher.search(booleanQuery.build(), 10000);
 				ScoreDoc[] hits = results.scoreDocs;
-				
-				for(ScoreDoc sd : hits) {
-					
+
+				for (ScoreDoc sd : hits) {
+
 					QueryResult result = new QueryResult(sd.doc, searcher.doc(sd.doc).get(SearchField.DOCNO.field()));
-					Terms vector = reader.getTermVector(sd.doc, SearchField.DOCCONTENT.field()+"vector");
+					Terms vector = reader.getTermVector(sd.doc, SearchField.DOCCONTENT.field() + "vector");
 					TermsEnum termsEnum = vector.iterator();
-					
+
 					BytesRef text = null;
-					
+
 					while ((text = termsEnum.next()) != null) {
-					    String term = text.utf8ToString().toLowerCase();
-					    
-					    for(SearchQuery searchQuery : searchQueryList) {
-						    for(String querystr : searchQuery.getHighlightQueryList()) {
-						    	
-						    	if(searchQuery.isExactWord()) {
-						    	    if(term.equals(querystr.toLowerCase())) {
-								    	 int freq = (int) termsEnum.totalTermFreq();
+						String term = text.utf8ToString().toLowerCase();
+
+						for (SearchQuery searchQuery : searchQueryList) {
+							if (searchQuery.getSearchField().equals(SearchField.DOCCONTENT)) {
+								for (String querystr : searchQuery.getHighlightQueryList()) {
+
+									if (searchQuery.isExactWord()) {
+										if (term.equals(querystr.toLowerCase())) {
+											int freq = (int) termsEnum.totalTermFreq();
 											result.addResult(term, freq);
-								    } 
-						    	} else {
-						    	    if(term.contains(querystr.toLowerCase())) {
-								    	 int freq = (int) termsEnum.totalTermFreq();
+										}
+									} else {
+										if (term.contains(querystr.toLowerCase())) {
+											int freq = (int) termsEnum.totalTermFreq();
 											result.addResult(term, freq);
-								    } 
-						    	}
-						    }
+										}
+									}
+								}
+							}
+
 						}
 					}
-					
+
 					queryResults.addResults(result);
 				}
 
@@ -87,8 +90,8 @@ public class Searcher {
 				e.printStackTrace();
 			}
 		}
-	
+
 		return queryResults;
 	}
-	
+
 }
