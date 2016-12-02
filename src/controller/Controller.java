@@ -10,6 +10,7 @@ import java.util.Observer;
 
 import datastructures.SearchField;
 import datastructures.SearchQuery;
+import model.HistoryWriter;
 import model.Indexer;
 import model.Model;
 import view.ResultsView;
@@ -63,10 +64,9 @@ public class Controller implements ActionListener {
 		else if (e.getActionCommand().equals("Go"))
 			Go();
 		else if (e.getActionCommand().equals("Back"))
-			Back();
-		else if (e.getActionCommand().equals("Save History"))
-			SearchQuery.saveSearch();
-
+			Back();	
+		else if (e.getActionCommand().equals("Load History"))
+			mSearchView.LoadHistory();
 		else {
 			for (SearchField sf : SearchField.values()) {
 				if (e.getActionCommand().equals("Remove" + sf.field()))
@@ -78,7 +78,7 @@ public class Controller implements ActionListener {
 				+ new java.util.Date(e.getWhen()) + " with e.paramString " + e.paramString());
 	}
 
-	private void Search() {
+	public void Search() {
 		
 		mResultsView = new ResultsView(this, mSearchView);
 		mModel.addObserver(mResultsView);
@@ -93,10 +93,25 @@ public class Controller implements ActionListener {
 			if (!item.getSearchValue().equals(""))
 				mSearchQueryList.add(new SearchQuery(item.getSearchValue(), sf, item.isExact(), item.isSentence()));
 		}
+		
+		HistoryWriter.write(mSearchQueryList);
 
 		this.mModel.Search(mSearchQueryList);
 		mResultsView.setVisible(true);
 	}
+	
+	public void Search(List<SearchQuery> list) {
+		
+		mResultsView = new ResultsView(this, mSearchView);
+		mModel.addObserver(mResultsView);
+		mResultsView.setPageNumber(0);
+		
+		mSearchQueryList = list;
+
+		this.mModel.Search(mSearchQueryList);
+		mResultsView.setVisible(true);
+	}
+
 
 	private void NextPage() {
 
@@ -148,7 +163,7 @@ public class Controller implements ActionListener {
 
 		// create Controller. tell it about Model and View, initialise model
 		myController.addModel(Model);
-		myController.addView(myView);
+		myController.addView(myView);;
 
 	}
 	

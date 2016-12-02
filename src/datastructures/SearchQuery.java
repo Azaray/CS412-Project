@@ -4,6 +4,7 @@ import java.io.File;
 import java.io.FileWriter;
 import java.io.IOException;
 import java.io.PrintWriter;
+import java.io.Serializable;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
@@ -20,8 +21,12 @@ import org.apache.lucene.analysis.standard.StandardTokenizer;
 import org.apache.lucene.analysis.tokenattributes.CharTermAttribute;
 import org.apache.lucene.util.AttributeFactory;
 
-public class SearchQuery {
+public class SearchQuery implements Serializable {
 
+	/**
+	 * 
+	 */
+	private static final long serialVersionUID = -9124254337770826714L;
 	private SearchField mSearchField;
 	private String mQueryString;
 	private List<String> mFullQueryList = new ArrayList<String>();
@@ -203,5 +208,9 @@ public class SearchQuery {
 		}
 	}
 	
+	public String fileString() {
+		
+		return mSearchField.field() + ":" + mQueryString;
+	}
 	
 }

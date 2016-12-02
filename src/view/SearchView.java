@@ -2,7 +2,6 @@ package view;
 
 import java.awt.Container;
 import java.awt.Dimension;
-import java.awt.EventQueue;
 import java.awt.FlowLayout;
 import java.awt.GridLayout;
 import java.util.ArrayList;
@@ -12,10 +11,8 @@ import java.util.Map;
 import java.util.Observable;
 import java.util.Observer;
 
-import javax.swing.BoxLayout;
 import javax.swing.DefaultComboBoxModel;
 import javax.swing.JButton;
-import javax.swing.JCheckBox;
 import javax.swing.JComboBox;
 import javax.swing.JFrame;
 import javax.swing.JLabel;
@@ -25,14 +22,12 @@ import javax.swing.JMenuItem;
 import javax.swing.JOptionPane;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
-import javax.swing.JTextField;
 import javax.swing.ScrollPaneConstants;
-import javax.swing.UIManager;
-import javax.swing.UnsupportedLookAndFeelException;
 
 import controller.Controller;
 import datastructures.SearchField;
 import datastructures.SearchQuery;
+import model.HistoryWriter;
 
 public class SearchView extends JFrame implements Observer {
 
@@ -121,7 +116,6 @@ public class SearchView extends JFrame implements Observer {
 		searchFieldslayout.setRows(searchFieldslayout.getRows() + 1);
 		searchFields.add(searchField);
 		searchItems.put(SearchField.DOCCONTENT, searchField);
-
 	}
 
 	private void createFileMenu() {
@@ -132,7 +126,7 @@ public class SearchView extends JFrame implements Observer {
 		JMenu menuFile = new JMenu("File");
 
 		// Create menu items
-		JMenuItem SaveHistory = new JMenuItem("Save History");
+		JMenuItem SaveHistory = new JMenuItem("Load History");
 		JMenuItem menuIndex = new JMenuItem("Index Dataset");
 		JMenuItem menuExit = new JMenuItem("Exit");
 
@@ -163,6 +157,7 @@ public class SearchView extends JFrame implements Observer {
 				searchFields.add(searchField);
 				searchItems.put(searchFieldToAdd, searchField);
 				revalidate();
+				repaint();
 			}
 		}
 
@@ -176,6 +171,7 @@ public class SearchView extends JFrame implements Observer {
 			searchFields.remove(searchItems.get(field));
 			searchItems.remove(field);
 			revalidate();
+			repaint();
 		}
 	}
 
@@ -209,6 +205,33 @@ public class SearchView extends JFrame implements Observer {
 			searchFieldToAdd = null;
 		}
 
+	}
+
+	public void LoadHistory() {
+		
+		JPanel panel = new JPanel();
+		panel.add(new JLabel("Choose a field to add:"));
+		DefaultComboBoxModel<List<SearchQuery>> model = new DefaultComboBoxModel<List<SearchQuery>>();
+		
+		List<List<SearchQuery>> history = HistoryWriter.returnHistory();
+		
+		for (List<SearchQuery> list : history) {
+			model.addElement(list);
+		}
+
+		JComboBox<List<SearchQuery>> comboBox = new JComboBox<List<SearchQuery>>(model);
+		panel.add(comboBox);
+
+		int result = JOptionPane.showConfirmDialog(null, panel, "Load History", JOptionPane.OK_CANCEL_OPTION,
+				JOptionPane.QUESTION_MESSAGE);
+		switch (result) {
+		case JOptionPane.OK_OPTION:
+			System.out.println("You selected " + comboBox.getSelectedItem());
+			Controller.Search((List<SearchQuery>) comboBox.getSelectedItem());
+			break;
+		default:
+			searchFieldToAdd = null;
+		}
 	}
 
 }
