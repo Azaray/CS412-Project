@@ -39,7 +39,6 @@ public class View extends JFrame implements Observer {
 	private Controller Controller;
 	private JTextField searchField;
 	private QueryResultList suggestionsList;
-	//private ArrayList<JLabel> suggestionLabels;
 	private DefaultListModel<String> listModel = new DefaultListModel<>();
 	private JList listSuggestions;
 	private int pageNumber;
@@ -47,8 +46,6 @@ public class View extends JFrame implements Observer {
 	private static final long serialVersionUID = -7574733018145634162L;
 	private JLabel allResults;
 	private JLabel selectedResults;
-	//private JComboBox resultsToGo;
-	//private JButton go;
 	private JTextArea expandedResult;
 	private JScrollPane scroll;
 	private JCheckBox isExact;
@@ -57,9 +54,7 @@ public class View extends JFrame implements Observer {
 	private JLabel expandedID;
 	private JPanel resultExpanded;
 
-	private boolean isExpanded;
 	private JTextField advancedSearchField;
-	private JLabel expandedDate;
 
 	public View(Controller myController) {
 
@@ -153,7 +148,6 @@ public class View extends JFrame implements Observer {
 
 	private void createAndShowGUI() {
 		//Create and set up the window.
-		//JFrame frame = new JFrame("Search...");
 
 
 		setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
@@ -216,18 +210,12 @@ public class View extends JFrame implements Observer {
 
 		JPanel suggestionListPanel = new JPanel();
 		suggestionListPanel.setLayout(new BoxLayout(suggestionListPanel, BoxLayout.Y_AXIS));
-
-		//suggestionLabels = new ArrayList<JLabel>();
 		listModel = new DefaultListModel<>();
 		ArrayList<JButton> actionsList = new ArrayList<>();
 
 		for(int i=0; i<10; i++) {
 			String iStr = Integer.toString(i+1);
-			//JLabel suggestion = new JLabel();
 			listModel.addElement("");
-			//suggestionLabels.add(suggestion);
-			//suggestionLabels.get(i).setAlignmentX(Component.LEFT_ALIGNMENT);
-			//suggestionListPanel.add(suggestionLabels.get(i));
 
 		}
 
@@ -247,25 +235,15 @@ public class View extends JFrame implements Observer {
 
 		allResults = new JLabel();
 		selectedResults = new JLabel();
-		//JLabel resulsToGoLabel = new JLabel("Result :");
-		//resultsToGo = new JComboBox();
-		//resultsToGo.addItem("No results");
 		JButton previous = new JButton("Previous");
 		previous.addActionListener(Controller);
 		JButton next = new JButton("Next");
 		next.addActionListener(Controller);
-		//go = new JButton("Go");
-		//go.addActionListener(Controller);
 
 		navigation.add(allResults);
 		navigation.add(selectedResults);
 		navigation.add(previous);
 		navigation.add(next);
-		//navigation.add(resulsToGoLabel);
-		//navigation.add(resultsToGo);
-		//navigation.add(go);
-
-
 		contentPane.add(navigation, BorderLayout.SOUTH);
 		setSize(600,600);
 
@@ -358,13 +336,9 @@ public class View extends JFrame implements Observer {
 			}
 
 
-			//resultExpanded = new JPanel();
-			//resultExpanded.setLayout(new BoxLayout(resultExpanded, BoxLayout.Y_AXIS));
 
 			expandedID = new JLabel(title);
 
-
-			//expandedDate = new JLabel(date);
 
 			resultExpanded.removeAll();
 			resultExpanded.add(expandedID);
@@ -373,8 +347,6 @@ public class View extends JFrame implements Observer {
 
 			scroll.setSize(new Dimension(600, 600));
 
-			//getContentPane().remove(resultExpanded);
-			//getContentPane().add(resultExpanded, BorderLayout.EAST);
 			invalidate();
 			validate();
 			repaint();
@@ -390,21 +362,15 @@ public class View extends JFrame implements Observer {
 			finish = 10;
 		}
 
-		//resultsToGo.removeAllItems();
-		//listModel.removeAllElements();
-
 
 
 		for(int i=0; i<finish; i++) {
 			QueryResult result = suggestionsList.getResults().get(start+i);
-			//suggestionLabels.get(i).setText("<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
 			listModel.set(i, "<html><font color='blue'>" + result.getmDocName() + "</font><br>" + getMentions(result) + "</html>");
-			//resultsToGo.addItem(result.getmDocName());
 		}
 		
 		for(int i=finish; i<10; i++) {
 			listModel.set(i, "");
-			//suggestionLabels.get(i).setText("");
 		}
 
 		if(suggestionsList.size() == 0) {

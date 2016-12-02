@@ -70,7 +70,6 @@ public class Controller implements ActionListener {
 		this.View.setIsAdvanced(true);
 		searchQuery = new ArrayList<SearchQuery>();
 		searchQuery.add(new SearchQuery(this.View.getAdvancedSearchField(), SearchField.DOCCONTENT, this.View.advancedIsExact(), this.View.advancedIsSentence()));
-		searchQuery.add(new SearchQuery("food and drug administration", SearchField.AGENCY, false, true));
 		this.Model.Search(searchQuery);
 	}
 
@@ -79,8 +78,6 @@ public class Controller implements ActionListener {
 			this.View.setPageNumber(this.View.getPageNumber() + 1);
 			this.View.fillSuggestions();
 			this.View.setSelectedResults(this.View.getPageNumber()*10 + "-" + (this.View.getPageNumber()+1)*10);
-		} else {
-			System.out.println("End reached");
 		}
 	}
 
@@ -94,7 +91,6 @@ public class Controller implements ActionListener {
 	}
 
 	private void Back() {
-		//this.View.setIsExpanded(false);
 		this.View.fillSuggestions();
 	}
 
@@ -103,9 +99,6 @@ public class Controller implements ActionListener {
 			this.View.setPageNumber(this.View.getPageNumber() - 1);
 			this.View.fillSuggestions();
 			this.View.setSelectedResults(this.View.getPageNumber()*10 + "-" + (this.View.getPageNumber()+1)*10);
-			System.out.println(this.View.getPageNumber());
-		} else {
-			System.out.println("End reached");
 		}
 	}
 
