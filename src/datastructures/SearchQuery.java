@@ -1,9 +1,15 @@
 package datastructures;
 
+import java.io.File;
+import java.io.FileWriter;
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.io.StringReader;
 import java.util.ArrayList;
 import java.util.List;
+
+import javax.swing.JFileChooser;
+import javax.swing.JPanel;
 
 import org.apache.lucene.analysis.CharArraySet;
 import org.apache.lucene.analysis.StopFilter;
@@ -20,6 +26,7 @@ public class SearchQuery {
 	private String mQueryString;
 	private List<String> mFullQueryList = new ArrayList<String>();
 	private List<String> mHighlighQueryList = new ArrayList<String>();
+	private static List<String> mHistoryList = new ArrayList<String>();
 	private boolean mExactWord;
 	private boolean mSentenceSearch;
 
@@ -145,7 +152,10 @@ public class SearchQuery {
 				}
 			}
 		}
-
+		
+		for(String word : mFullQueryList){
+			saveTerm(word);
+		}
 		mFullQueryList = newList;
 		
 		for(String str : mFullQueryList) {
@@ -162,4 +172,36 @@ public class SearchQuery {
 		mQueryString = strb.toString();
 	}
 
+	public void saveTerm(String w){
+		mHistoryList.add(w);
+	}
+	public static void saveSearch(){
+		JPanel savePanel = new JPanel();
+		JFileChooser fc = new JFileChooser();
+		int returnVal = fc.showSaveDialog(savePanel);
+		fc.setFileSelectionMode(JFileChooser.FILES_AND_DIRECTORIES);
+
+		if (returnVal == JFileChooser.APPROVE_OPTION){
+			try
+			{
+				PrintWriter pw = new PrintWriter(new FileWriter(new File(fc.getSelectedFile()+ ".txt")));   
+				for(int i = 0; i<mHistoryList.size(); i++)
+				{
+					pw.println(mHistoryList.get(i));
+					System.out.println("saved");
+				}
+				pw.close();
+				mHistoryList.clear();
+			} 
+			catch (Exception ex)
+			{
+				ex.printStackTrace();
+			}
+		}
+		else if (returnVal == JFileChooser.CANCEL_OPTION) {
+			System.out.println("Cancelled ");
+		}
+	}
+	
+	
 }
