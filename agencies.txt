@@ -1,116 +1,261 @@
-Agricultural Marketing Service, USDA.
-Securities and Exchange Commission.
-Federal Energy Regulatory Commission.
-Patent and Trademark Office, Commerce.
-National Marine Fisheries Service (NMFS), National Oceanic and Atmospheric Administration (NOAA), Commerce.
-Food and Drug Administration, HHS.
-Environmental Protection Agency.
-Department of Education.
-Rural Electrification Administration, USDA.
-Federal Aviation Administration, DOT.
-Federal Energy Regulatory Commission, DOE.
-Office and Surface Mining Reclamation and Enforcement, Interior.
-Department of Veterans Affairs.
-United States Environmental Protection Agency (USEPA).
-Federal Communications Commission.
-National Highway Traffic Safety Administration (NHTSA), DOT.
-Fish and Wildlife Service, Interior.
-Food and Nutrition Service, USDA.
-Forest Service, USDA.
-National Institute of Standards and Technology (NIST), Commerce.
-National Marine Fisheries Service (NMFS), NOAA, Commerce.
-Corporation for National and Community Service.
-Office of the Secretary, DoD.
-Department of the Army, Department of Defense.
-Department of the Navy, Defense.
-Department of Energy (DOE).
-Office of Fossil Energy, DOE.
-Western Area Power Administration, DOE.
-Health Care Financing Administration (HCFA), HHS.
-Office of Community Planning and Development, HUD.
-Bureau of Land Management, Interior.
-Bureau of Land Management, Interior, Prineville District.
-United States Geological Survey, Interior.
-Interstate Commerce Commission.
-Drug Enforcement Administration, Justice.
-Securities and Exchange Commission (the ``SEC'' or ``Commission'').
-Tennessee Valley Authority.
-National Telecommunications and Information Administration (NTIA), Commerce.
-Office of the Assistant Secretary for Community Planning and Development, HUD.
-Immigration and Naturalization Service, Justice.
-Nuclear Regulatory Commission.
-Bureau of Alcohol, Tobacco and Firearms (ATF), Treasury.
-Office of Surface Mining Reclamation and Enforcement (OSM), Interior.
-Food Safety and Inspection Service, USDA.
-Federal Aviation Administration (FAA), DOT.
-International Trade Administration/Import Administration, Department of Commerce.
-Import Administration, International Trade Administration, Department of Commerce.
-Import Administration, International Trade Administration, U.S. Department of Commerce.
-United States Travel and Tourism Administration (USTTA), Commerce.
-Committee for the Implementation of Textile Agreements (CITA).
-Federal Trade Commission.
-Substance Abuse and Mental Health Services Administration, HHS (Formerly: National Institute on Drug Abuse, ADAMHA, HHS).
-Bureau of Reclamation, Interior.
-U.S. International Trade Commission.
-United States International Trade Commission.
-Foreign Claims Settlement Commission of the United States, Department of Justice.
-Pension and Welfare Benefits Administration, Labor.
-National Endowment for the Humanities, NFAH.
-National Science Foundation.
-Department of Transportation, Federal Aviation Administration.
-Animal and Plant Health Inspection Service, USDA.
-National Institute of Standards and Technology, Commerce.
-Social Security Administration, HHS.
-Coast Guard, DOT.
-Environmental Protection Agency (EPA).
-Health Care Financing Administration (HCFA), and Public Health Service (PHS), HHS.
-National Marine Fisheries Service (NMFS), National Oceanic Atmospheric Administration (NOAA), Commerce.
-Employment and Training Administration, Labor.
-United States Environmental Protection Agency (EPA).
-Forest Service, USDA. The Forest Service is the lead agency for preparing the Environmental Impact Statement. The U.S. Army Corps of Engineers, U.S. Environmental Protection Agency, and U.S. Department of Interior_Fish and Wildlife Service are cooperating agencies.
-Rural Electrification Administration and Rural Telephone Bank, USDA.
-International Trade Administration/Import Administration/Department of Commerce.
-United States-Canada Free-Trade Agreement, Binational Secretariat, United States Section, International Trade Administration, Department of Commerce.
-Office of Ocean and Coastal Resource Management, National Ocean Service, National Oceanic and Atmospheric Administration, DOC.
-National Assessment Governing Board, Education.
-Bureau of Land Management, Farmington District, Interior.
-Bureau of Land Management, DOI.
-Geological Survey, Interior.
-Office of the Secretary, Labor.
-Occupational Safety and Health Administration, Department of Labor.
-Office of Management and Budget (OMB), Executive Office of the President.
-Office of the United States Trade Representative.
-National Highway Traffic Safety Administration (NHTSA), Department of Transportation.
-United States Information Agency.
-Commodity Credit Corporation, USDA.
-Environmental Protection Agency. Action: Immediate final rule.
-General Services Administration.
-Department of Defense (DoD).
-Agricultural Stabilization and Conservation Service, USDA.
-Federal Housing Finance Board.
-Small Business Administration.
-Federal Highway Administration (FHWA), DOT.
-Department of the Army, DOD.
-Headquarters, I Corps and Fort Lewis, Fort Lewis, WA, DOD.
-Department of Energy, San Francisco Operations Office.
-Office of Fossil Energy, Department of Energy.
-Copyright Office; Library of Congress.
-Bureau of Consular Affairs, DOS.
-Office of the Assistant Secretary for Housing-Federal Housing Commissioner, HUD.
-Internal Revenue Service (IRS), Treasury.
-Office of Hearings and Appeals, Interior.
-Commodity Futures Trading Commission.
-Bureau of Alcohol, Tobacco and Firearms (ATF), Department of the Treasury.
-Postal Service.
-Federal Maritime Commission.
-Farmers Home Administration, USDA.
-Department of Energy.
-Environmental Protection Agency, Region II.
-Board of Governors of the Federal Reserve System.
-Bureau of Land Management; Interior.
-Fish and Wildlife Service, Interior.
-Merit Systems Protection Board.
-U.S. Nuclear Regulatory Commission (NRC).
-Physician Payment Review Commission.
-Securities and Exchange Commission (``SEC'').
-Office of the Assistant Secretary for Fair Housing and Equal Opportunity, HUD.
+AGENCY: Agricultural Marketing Service, USDA.
+AGENCY: Securities and Exchange Commission.
+AGENCY: Federal Energy Regulatory Commission.
+AGENCY: Patent and Trademark Office, Commerce.
+AGENCY: National Marine Fisheries Service (NMFS), National Oceanic and Atmospheric Administration (NOAA), Commerce.
+AGENCY: Food and Drug Administration, HHS.
+AGENCY: Environmental Protection Agency.
+AGENCY: Department of Education.
+AGENCY: Rural Electrification Administration, USDA.
+AGENCY: Federal Aviation Administration, DOT.
+AGENCY: Federal Energy Regulatory Commission, DOE.
+AGENCY: Office and Surface Mining Reclamation and Enforcement, Interior.
+AGENCY: Department of Veterans Affairs.
+AGENCY: United States Environmental Protection Agency (USEPA).
+AGENCY: Federal Communications Commission.
+AGENCY: National Highway Traffic Safety Administration (NHTSA), DOT.
+AGENCY: Fish and Wildlife Service, Interior.
+AGENCY: Food and Nutrition Service, USDA.
+AGENCY: Forest Service, USDA.
+AGENCY: National Institute of Standards and Technology (NIST), Commerce.
+AGENCY: National Marine Fisheries Service (NMFS), NOAA, Commerce.
+AGENCY: Corporation for National and Community Service.
+AGENCY: Office of the Secretary, DoD.
+AGENCY: Department of the Army, Department of Defense.
+AGENCY: Department of the Navy, Defense.
+AGENCY: Department of Energy (DOE).
+AGENCY: Office of Fossil Energy, DOE.
+AGENCY: Western Area Power Administration, DOE.
+AGENCY: Health Care Financing Administration (HCFA), HHS.
+AGENCY: Office of Community Planning and Development, HUD.
+AGENCY: Bureau of Land Management, Interior.
+AGENCY: Bureau of Land Management, Interior, Prineville District.
+AGENCY: United States Geological Survey, Interior.
+AGENCY: Interstate Commerce Commission.
+AGENCY: Drug Enforcement Administration, Justice.
+AGENCY: Securities and Exchange Commission (the ``SEC'' or ``Commission'').
+AGENCY: Tennessee Valley Authority.
+AGENCY: National Telecommunications and Information Administration (NTIA), Commerce.
+AGENCY: Office of the Assistant Secretary for Community Planning and Development, HUD.
+AGENCY: Immigration and Naturalization Service, Justice.
+AGENCY: Nuclear Regulatory Commission.
+AGENCY: Bureau of Alcohol, Tobacco and Firearms (ATF), Treasury.
+AGENCY: Office of Surface Mining Reclamation and Enforcement (OSM), Interior.
+AGENCY: Food Safety and Inspection Service, USDA.
+AGENCY: Federal Aviation Administration (FAA), DOT.
+AGENCY: International Trade Administration/Import Administration, Department of Commerce.
+AGENCY: Import Administration, International Trade Administration, Department of Commerce.
+AGENCY: Import Administration, International Trade Administration, U.S. Department of Commerce.
+AGENCY: United States Travel and Tourism Administration (USTTA), Commerce.
+AGENCY: Committee for the Implementation of Textile Agreements (CITA).
+AGENCY: Federal Trade Commission.
+AGENCY: Substance Abuse and Mental Health Services Administration, HHS (Formerly: National Institute on Drug Abuse, ADAMHA, HHS).
+AGENCY: Bureau of Reclamation, Interior.
+AGENCY: U.S. International Trade Commission.
+AGENCY: United States International Trade Commission.
+AGENCY: Foreign Claims Settlement Commission of the United States, Department of Justice.
+AGENCY: Pension and Welfare Benefits Administration, Labor.
+AGENCY: National Endowment for the Humanities, NFAH.
+AGENCY: National Science Foundation.
+AGENCY: Department of Transportation, Federal Aviation Administration.
+AGENCY: Animal and Plant Health Inspection Service, USDA.
+AGENCY: National Institute of Standards and Technology, Commerce.
+AGENCY: Social Security Administration, HHS.
+AGENCY: Coast Guard, DOT.
+AGENCY: Environmental Protection Agency (EPA).
+AGENCY: Health Care Financing Administration (HCFA), and Public Health Service (PHS), HHS.
+AGENCY: National Marine Fisheries Service (NMFS), National Oceanic Atmospheric Administration (NOAA), Commerce.
+AGENCY: Employment and Training Administration, Labor.
+AGENCY: United States Environmental Protection Agency (EPA).
+AGENCY: Forest Service, USDA. The Forest Service is the lead agency for preparing the Environmental Impact Statement. The U.S. Army Corps of Engineers, U.S. Environmental Protection Agency, and U.S. Department of Interior_Fish and Wildlife Service are cooperating agencies.
+AGENCY: Rural Electrification Administration and Rural Telephone Bank, USDA.
+AGENCY: International Trade Administration/Import Administration/Department of Commerce.
+AGENCY: United States-Canada Free-Trade Agreement, Binational Secretariat, United States Section, International Trade Administration, Department of Commerce.
+AGENCY: Office of Ocean and Coastal Resource Management, National Ocean Service, National Oceanic and Atmospheric Administration, DOC.
+AGENCY: National Assessment Governing Board, Education.
+AGENCY: Bureau of Land Management, Farmington District, Interior.
+AGENCY: Bureau of Land Management, DOI.
+AGENCY: Geological Survey, Interior.
+AGENCY: Office of the Secretary, Labor.
+AGENCY: Occupational Safety and Health Administration, Department of Labor.
+AGENCY: Office of Management and Budget (OMB), Executive Office of the President.
+AGENCY: Office of the United States Trade Representative.
+AGENCY: National Highway Traffic Safety Administration (NHTSA), Department of Transportation.
+AGENCY: United States Information Agency.
+AGENCY: Commodity Credit Corporation, USDA.
+AGENCY: Environmental Protection Agency. Action: Immediate final rule.
+AGENCY: General Services Administration.
+AGENCY: Department of Defense (DoD).
+AGENCY: Agricultural Stabilization and Conservation Service, USDA.
+AGENCY: Federal Housing Finance Board.
+AGENCY: Small Business Administration.
+AGENCY: Federal Highway Administration (FHWA), DOT.
+AGENCY: Department of the Army, DOD.
+AGENCY: Headquarters, I Corps and Fort Lewis, Fort Lewis, WA, DOD.
+AGENCY: Department of Energy, San Francisco Operations Office.
+AGENCY: Office of Fossil Energy, Department of Energy.
+AGENCY: Copyright Office; Library of Congress.
+AGENCY: Bureau of Consular Affairs, DOS.
+AGENCY: Office of the Assistant Secretary for Housing-Federal Housing Commissioner, HUD.
+AGENCY: Internal Revenue Service (IRS), Treasury.
+AGENCY: Office of Hearings and Appeals, Interior.
+AGENCY: Commodity Futures Trading Commission.
+AGENCY: Bureau of Alcohol, Tobacco and Firearms (ATF), Department of the Treasury.
+AGENCY: Postal Service.
+AGENCY: Federal Maritime Commission.
+AGENCY: Farmers Home Administration, USDA.
+AGENCY: Department of Energy.
+AGENCY: Environmental Protection Agency, Region II.
+AGENCY: Board of Governors of the Federal Reserve System.
+AGENCY: Bureau of Land Management; Interior.
+agency: Fish and Wildlife Service, Interior.
+AGENCY: Merit Systems Protection Board.
+AGENCY: U.S. Nuclear Regulatory Commission (NRC).
+AGENCY: Physician Payment Review Commission.
+agency: Securities and Exchange Commission (``SEC'').
+AGENCY: Office of the Assistant Secretary for Fair Housing and Equal Opportunity, HUD.
+AGENCY: Research and Special Programs Administration (RSPA), DOT.
+AGENCY: National Communications System, DoD.
+agency: Military Traffic Management Command, DOD.
+AGENCY: U.S. Environmental Protection Agency (USEPA).
+AGENCY: Office of Administration, HUD.
+AGENCY: Office of Lead-Based Paint Abatement and Poisoning Prevention, HUD.
+agency: Bureau of Land Management, Interior.
+AGENCY: Department of the Interior, Fish and Wildlife Service.
+agency: National Science Foundation.
+AGENCY: Office of Management and Budget, Office of Federal Procurement Policy.
+AGENCY: Federal Aviation Administration, USDOT.
+agency: United States Information Agency.
+AGENCY: National Institute of Standards and Technology (NIST), Technology Administration, Commerce.
+AGENCY: Customs Service, Treasury.
+AGENCY: Railroad Retirement Board.
+agency: Occupational Safety and Health Administration (OSHA), Department of Labor.
+AGENCY: Pension Benefit Guaranty Corporation.
+agency: Federal Communications Commission.
+AGENCY: Interstate Commerce Commission (ICC).
+AGENCY: Office of the Secretary, USDA.
+AGENCY: National Highway Traffic Safety Administration (NHTSA) and Federal Highway Administration (FHWA), Department of Transportation (DOT).
+AGENCY: Office of the Secretary, Department of the Interior.
+AGENCY: Office of Acquisition Policy, GSA.
+AGENCY: Soil Conservation Service, USDA.
+AGENCY: Minority Business Development Agency, Commerce.
+AGENCY: Committee for Purchase From People Who Are Blind or Severely Disabled.
+AGENCY: U.S. Army Corps of Engineers, DOD.
+AGENCY: Department of the Army, DoD.
+AGENCY: Law School Clinical Experience Program, Education.
+AGENCY: Office of Postsecondary Education, Department of Education.
+AGENCY: Environmental Protection Agency (Region 5).
+AGENCY: Federal Deposit Insurance Corporation.
+AGENCY: Federal Emergency Management Agency (FEMA).
+AGENCY: General Accounting Office.
+AGENCY: National Institutes of Health, Public Health Service, HHS.
+AGENCY: Bureau of Land Management, Lakeview District, Klamath Falls Resource Area, Interior.
+AGENCY: Bureau of Land Management, Department of the Interior.
+AGENCY: Bureau of Land Management, Montana, Miles City District, Billings Resource Area, Interior.
+AGENCY: National Park Service, Interior.
+AGENCY: Securities and Exchange Commission (``SEC'').
+AGENCY: Bureau of Indian Affairs, Interior.
+AGENCY: Environmental Protection Agency, Region 10.
+AGENCY: Department of State.
+AGENCY: Veterans Affairs.
+AGENCY: Federal Prison Industries, Inc., Bureau of Prisons, DOJ.
+AGENCY: Department of Justice.
+AGENCY: Bureau of Alcohol, Tobacco, and Firearms (ATF), Department of the Treasury.
+AGENCY: Copyright Office, Library of Congress.
+AGENCY: Bureau of Prisons, Justice.
+AGENCY: International Trade Administration/Import Administration Department of Commerce.
+AGENCY: International Trade Administration/Import Administration, Commerce.
+AGENCY: National Assessment Governing Board; Education.
+AGENCY: Advisory Committee on Student Financial Assistance, Education.
+AGENCY : Environmental Protection Agency (EPA).
+AGENCY: Agency for Health Care Policy and Research.
+AGENCY: Minerals Management Service (MMS), Interior.
+AGENCY: National Indian Gaming Commission.
+AGENCY: Office of Personnel Management.
+AGENCY: Small Business Administration (SBA).
+AGENCY: Bureau of Administration, State.
+AGENCY: Thrift Depositor Protection Oversight Board.
+agency: Bureau of Indian Affairs, Interior.
+AGENCY: Department of Agriculture.
+AGENCY: Office of the Secretary, HUD.
+AGENCY: Inspector General, DOD.
+AGENCY: Department of the Air Force, DOD.
+AGENCY: Federal Emergency Management Agency, FEMA.
+agency: Army Corps of Engineers, DoD.
+AGENCY: Defense Logistics Agency, DOD.
+AGENCY: Defense Contract Audit Agency, DoD.
+AGENCY: Department of the Navy, DOD.
+AGENCY: National Education Commission on Time and Learning, Education.
+AGENCY: Institute of American Indian and Alaska Native Culture and Arts Development (aka Institute of American Indian Arts).
+AGENCY: Legal Services Corporation.
+agency: Resolution Trust Corporation.
+AGENCY: Resolution Trust Corporation.
+AGENCY: Research and Special Programs Administration, DOT.
+AGENCY: Research and Special Programs Administration (RSPA), Department of Transportation.
+AGENCY: United States Environmental Protection Agency.
+AGENCY: Education.
+AGENCY: Forest Service, USDA and Pacific Unified School District.
+AGENCY: U.S. Geological Survey, Interior.
+AGENCY: National Aeronautics and Space Administration.
+AGENCY: Securities and Exchange Commission (``SEC'' or ``Commission'').
+AGENCY: U.S. Army Materiel Command, DOD.
+AGENCY: U.S. Army Armament Research, Development and Engineering Center, DOD.
+AGENCY: National Marine Fisheries Service (NMFS), National Oceanic and Atmospheric Administration, Commerce.
+AGENCY: Department of the Navy, DoD.
+AGENCY: United States Department of Energy.
+AGENCY: Energy Information Administration, DOE.
+AGENCY: Environmental Protection Agency (EPA)
+agency: U.S. Environmental Protection Agency (``U.S. EPA'').
+AGENCY: Public Health Service, HHS.
+AGENCY: Office of Assistant Secretary for Community Planning and Development, HUD.
+AGENCY: Central Utah Water Conservancy District, Interior.
+AGENCY: National Archives and Records Administration (NARA).
+AGENCY: U.S. Nuclear Regulatory Commission.
+AGENCY: Centers for Disease Control and Prevention (CDC), Public Health Service, HHS.
+AGENCY: Inter-American Foundation.
+AGENCY: Federal Deposit Insurance Corporation (FDIC).
+AGENCY: Farm Credit Administration.
+agency: Federal Aviation Administration (FAA), DOT.
+agency: National Institute of Standards and Technology, Commerce.
+AGENCY: Administrative Conference of the United States.
+AGENCY: International Trade Administration/Import Administration.
+AGENCY: Import Administration, International Trade Administration, Department of Commerce
+AGENCY: National Marine Fisheries Service (NMFS). NOAA, Commerce.
+AGENCY: U.S. Department of Energy (DOE).
+AGENCY: Office of Inspector General, HHS.
+AGENCY: Bureau of Land Management (BLM), Burns, Oregon, Interior.
+AGENCY: International Trade Commission.
+AGENCY: National Science Foundation (NFS).
+AGENCY: Office of Personnel Management. aCTION: Notice of meeting.
+AGENCY: Securities and Exchange Commission (``Commission'' or ``SEC'').
+AGENCY: National Highway Traffic Safety Administration, DOT.
+agency: National Highway Traffic Safety Administration, DOT.
+AGENCY: Army Corps of Engineers, DoD.
+AGENCY: Defense Intelligence Agency Scientific Advisory Board.
+AGENCY: Defense Finance and Accounting Service, Office of the Secretary, Department of Defense
+AGENCY: Armed Forces Epidemiological Board, DOD.
+AGENCY: Office of Refugee Resettlement, ACF, HHS.
+AGENCY: Administration on Children, Youth and Families (ACYF), Administration for Children and Families (ACF), HHS.
+AGENCY: Health Resources and Services Administration (HRSA), PHS.
+AGENCY: President's Council on Physical Fitness and Sports (PCPFS), PHS, DHHS.
+AGENCY: Office of the Assistant Secretary for Housing_Federal Housing Commissioner, HUD.
+AGENCY: Office of the Assistant Secretary for Housing_Federal Housing Commissioner, (HUD).
+agency: Bureau of Land Management_Interior.
+AGENCY: Bureau of Land Management, USDI, and Forest Service, USDA.
+AGENCY: Federal Aviation Administration; Transportation.
+AGENCY: Office of Government Ethics (OGE).
+AGENCY: Office of Thrift Supervision, Treasury.
+AGENCY: Administration for Children and Families (ACF), HHS.
+AGENCY: Economic Development Administration (EDA), Department of Commerce.
+AGENCY: U.S. Environmental Protection Agency.
+AGENCY: Office of the Secretary, DOI.
+AGENCY: Minerals Management Service, Interior.
+AGENCY: National Park Service, Interior
+AGENCY: Executive Office of the President, Office of Management and Budget, Office of Federal Procurement Policy (OFPP).
+AGENCY: Federal Highway Administration (FHWA) and Research and Special Programs Administration (RSPA), DOT.
+AGENCY: Centers for Disease Control and Prevention (CDC), Public Health Service (PHS), Department of Health and Human Services (DHHS).
+AGENCY: Office of Assistant Secretary for Housing_Federal Housing Commissioner, HUD.
+AGENCY: Federal Aviation Administration (FAA) DOT.
+AGENCY: Customs Service, Department of the Treasury.
+AGENCY: Office of Foreign Assets Control, Treasury.
+AGENCY: Internal Revenue Service, Treasury.

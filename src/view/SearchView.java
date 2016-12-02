@@ -228,7 +228,7 @@ public class SearchView extends JFrame implements Observer {
 		switch (result) {
 		case JOptionPane.OK_OPTION:
 			System.out.println("You selected " + comboBox.getSelectedItem());
-			Controller.Search((List<SearchQuery>) ((SearchQueryList) comboBox.getSelectedItem()).list);
+			Controller.Search((List<SearchQuery>) ((SearchQueryList) comboBox.getSelectedItem()).getContents());
 			break;
 		default:
 			searchFieldToAdd = null;

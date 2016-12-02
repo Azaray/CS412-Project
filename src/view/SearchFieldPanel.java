@@ -48,7 +48,7 @@ public class SearchFieldPanel extends JPanel{
 				 model.addElement(val);
 			 
 			mComboSearchField.setModel(model);
-			mComboSearchField.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
+			mComboSearchField.setPrototypeDisplayValue("XXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXXX");
 			this.add(mComboSearchField);
 		} else {
 
